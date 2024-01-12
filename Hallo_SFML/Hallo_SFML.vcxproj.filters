@@ -21,9 +21,15 @@
     <ClCompile Include="menue.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="menueFunktionen.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menue.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="menueFunktionen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

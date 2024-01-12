@@ -135,9 +135,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menue.cpp" />
+    <ClCompile Include="menueFunktionen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menue.h" />
+    <ClInclude Include="menueFunktionen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
