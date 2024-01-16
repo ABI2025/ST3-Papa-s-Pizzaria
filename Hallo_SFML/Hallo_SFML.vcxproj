@@ -133,11 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Karte.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menue.cpp" />
     <ClCompile Include="menueFunktionen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Karte.h" />
     <ClInclude Include="menue.h" />
     <ClInclude Include="menueFunktionen.h" />
   </ItemGroup>
