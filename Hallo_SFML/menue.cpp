@@ -93,7 +93,7 @@ void menue::startMenue()
     // Hauptschleife
     while (window.isOpen()) {
         // Behandle Ereignisse
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event)) {
             // Schließe das Fenster
             if (event.type == sf::Event::Closed) {
@@ -104,10 +104,29 @@ void menue::startMenue()
             if (event.type == Event::MouseButtonPressed) {
                 // Wenn die Maustaste gedrückt wird, ändere die Farbe der Schrift
                 if (event.mouseButton.button == Mouse::Left) {
-                    text8.setFillColor(sf::Color::Blue);
+                    text8.setFillColor(Color::Blue);
                 }
             }
         }
+        window.clear();
+
+        // Zeichne den text
+        window.draw(text0);
+        window.draw(text1);
+        window.draw(text2);
+        window.draw(text3);
+        window.draw(text4);
+        window.draw(text5);
+        window.draw(text6);
+        window.draw(text7);
+
+        // Zeichne das Rechteck und den Text
+        window.draw(shape0);
+        window.draw(shape1);
+        window.draw(text8);
+        window.draw(text9);
+
+        window.display();
 
     }
 }
