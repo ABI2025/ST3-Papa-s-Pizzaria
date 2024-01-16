@@ -3,9 +3,9 @@
 #include "Karte.h"
 int main()
 {
-    //menue* home = new menue;
-    //home->startMenue();
-    Karte* map = new Karte; 
-    map->erstelleKarte(); 
+    menue* home = new menue;
+    home->startMenue();
+   /* Karte* map = new Karte; 
+    map->erstelleKarte(); */
     return 0;
 }
