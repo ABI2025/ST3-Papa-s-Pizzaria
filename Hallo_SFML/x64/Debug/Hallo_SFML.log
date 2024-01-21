@@ -1,4 +1,39 @@
 ﻿  Karte.cpp
+  main.cpp
+  menue.cpp
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(69,47): warning C4244: "Argument": Konvertierung von "T" in "float", möglicher Datenverlust
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(75,47): warning C4244: "Argument": Konvertierung von "T" in "float", möglicher Datenverlust
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(106,92): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+          with
+          [
+              T=float
+          ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(106,71): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+          with
+          [
+              T=float
+          ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(112,97): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+          with
+          [
+              T=float
+          ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(112,76): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+          with
+          [
+              T=float
+          ]
+  menueFunktionen.cpp
+  Code wird generiert...
+  LINK : C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\x64\Debug\Hallo_SFML.exe wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
 sfml-graphics-s-d.lib(Transformable.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Transformable.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-graphics-s-d.lib(Color.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Color.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Texture.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
@@ -55,4 +90,4 @@ sfml-system-s-d.lib(MutexImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sf
 sfml-system-s-d.lib(ClockImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-system-s-d.lib(ClockImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-system-s-d.lib(SleepImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-system-s-d.lib(SleepImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-system-s-d.lib(ThreadLocalImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-system-s-d.lib(ThreadLocalImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-  Hallo_SFML.vcxproj -> C:\Users\Louis\Desktop\Projekt\x64\Debug\Hallo_SFML.exe
+  Hallo_SFML.vcxproj -> C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\x64\Debug\Hallo_SFML.exe

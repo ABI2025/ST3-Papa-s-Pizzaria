@@ -10,7 +10,7 @@ void Karte::erstelleKarte()
 	RenderWindow window(videoMode, "Papas-Pizzeria");
 
 	sf::Texture texture; 
-	if(!texture.loadFromFile("C:/Users/Louis/Desktop/Projekt/Karte.png"))
+	if(!texture.loadFromFile("Images/Karte.png"))
 		{
 			cout << "Fehler" << endl; 
 			
