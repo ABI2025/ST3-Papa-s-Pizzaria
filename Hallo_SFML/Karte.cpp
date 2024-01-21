@@ -2,51 +2,50 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
+using namespace std; 
 
 void Karte::erstelleKarte()
 {
 	VideoMode videoMode = VideoMode::getDesktopMode();
 	RenderWindow window(videoMode, "Papas-Pizzeria");
 
-	// Hintergrund weiﬂ f‰rben
-	window.clear(Color::White);
-
-	// Fenster anzeigen
-	window.display();
-
-	// Hauptschleife
-	while (window.isOpen()) {
-		// Behandle Ereignisse
-		sf::Event event;
-		while (window.pollEvent(event)) {
-			// Schlieﬂe das Fenster
-			if (event.type == sf::Event::Closed) {
-				window.close();
-			}
+	sf::Texture texture; 
+	if(!texture.loadFromFile("C:/Users/Louis/Desktop/Projekt/Karte.png"))
+		{
+			cout << "Fehler" << endl; 
+			
 		}
+    else 
+    {
+        // Erstelle ein Sprite mit der geladenen Textur
+        sf::Sprite sprite(texture);
+        // Skaliere das Sprite um 20%
+        float skalierungsfaktor = 0.8f; // 80% der Originalgrˆﬂe
+        sprite.setScale(skalierungsfaktor, skalierungsfaktor);
+        // Berechne die zentrierte Position unter Ber¸cksichtigung der Skalierung
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2f spriteSize = sf::Vector2f(sprite.getLocalBounds().width, sprite.getLocalBounds().height) * skalierungsfaktor;
+        sf::Vector2f spritePosition((windowSize.x - spriteSize.x) / 2, (windowSize.y - spriteSize.y) / 2);
+        sprite.setPosition(spritePosition);
+        // Hauptprogrammschleife
+        while (window.isOpen()) {
+        // Ereignisse verarbeiten
+            sf::Event event;
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
+            }
+            // Fenster lˆschen
+            window.clear();
 
-		// Erstelle Kacheln
-		for (int i = 0; i < window.getSize().x; i += 100) {
-			for (int j = 0; j < window.getSize().y; j += 100) {
-				// Erstelle Rechteck
-				RectangleShape rect(Vector2f(100, 100));
+            // Sprite zeichnen
+            window.draw(sprite);
 
-				// Setze Farbe
-				if ((i + j) % 2 == 0) {
-					rect.setFillColor(Color::White);
-				}
-				else {
-					rect.setFillColor(Color::Black);
-				}
-
-				// Zeichne Rechteck
-				window.draw(rect);
-			}
-		}
-
-		// Fenster anzeigen
-		window.display();
-	}
+            // Fenster anzeigen
+            window.display();
+        }
+    }
 }
 
 
