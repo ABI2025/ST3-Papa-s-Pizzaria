@@ -14,7 +14,7 @@ void menueFunktionen::einstellungen(Font* font)
     listener.setGlobalVolume(i);
 
     // Erstelle einen Sound-Buffer
-    sf::SoundBuffer buffer;
+    SoundBuffer buffer;
 
     // Lade die Audiodatei
     if (!buffer.loadFromFile("SoundData/ping-82822.mp3"))
@@ -24,12 +24,12 @@ void menueFunktionen::einstellungen(Font* font)
     }
 
     // Erstelle einen Sound
-    sf::Sound sound;
+    Sound sound;
 
     // Setze den Sound-Buffer
     sound.setBuffer(buffer);
 
-    // Erstelle ein Fenster mit der Größe des Bildschirms
+    // Erstelle ein Fenster mit der GrÃ¶ÃŸe des Bildschirms
     VideoMode videoMode = VideoMode::getDesktopMode();
     RenderWindow window(videoMode, "Papas-Pizzeria");
 
@@ -38,25 +38,25 @@ void menueFunktionen::einstellungen(Font* font)
     Text text1("Lauter(+)", *font, 24);
     Text text2("Leiser(-)", *font, 24);
 
-    // Erstelle ein Rechteck für den Knopf
+    // Erstelle ein Rechteck fÃ¼r den Knopf
     RectangleShape shape0;
     shape0.setFillColor(sf::Color::Transparent);
     shape0.setPosition(window.getSize().x / 2 - 150, 400);
     shape0.setSize(sf::Vector2f(200, 100));
 
-    // Erstelle ein Rechteck für den Knopf
+    // Erstelle ein Rechteck fÃ¼r den Knopf
     RectangleShape shape1;
     shape1.setFillColor(sf::Color::Transparent);
     shape1.setPosition(window.getSize().x / 2 - 245, 535);
     shape1.setSize(sf::Vector2f(200, 100));
 
-    // Erstelle ein Rechteck für den Knopf
+    // Erstelle ein Rechteck fÃ¼r den Knopf
     RectangleShape shape2;
     shape2.setFillColor(sf::Color::Transparent);
     shape2.setPosition(window.getSize().x / 2 - 0, 535);
     shape2.setSize(sf::Vector2f(200, 100));
 
-    // Setze die Position des Textes über dem Rechteck
+    // Setze die Position des Textes Ã¼ber dem Rechteck
     text0.setPosition(shape0.getPosition().x + 70, shape0.getPosition().y + 30);
     text1.setPosition(shape1.getPosition().x + 9, shape1.getPosition().y + 30);
     text2.setPosition(shape2.getPosition().x + 9, shape2.getPosition().y + 30);
@@ -71,19 +71,19 @@ void menueFunktionen::einstellungen(Font* font)
         Event event;
         while (window.pollEvent(event))
         {
-            // Schließe das Fenster
+            // SchlieÃŸe das Fenster
             if (event.type == sf::Event::Closed)
             {
                 window.close();
             }
 
-            // Überprüfe, ob die Maustaste gedrückt wird
+            // ÃœberprÃ¼fe, ob die Maustaste gedrÃ¼ckt wird
             if (event.type == Event::MouseButtonPressed)
             {
-                // Überprüfe, ob der Mauszeiger über dem Text8 liegt
+                // ÃœberprÃ¼fe, ob der Mauszeiger Ã¼ber dem Text8 liegt
                 if (text1.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
                 {
-                    // Wenn der Mauszeiger über dem Text8 liegt, ändere die Farbe der Schrift
+                    // Wenn der Mauszeiger Ã¼ber dem Text8 liegt, Ã¤ndere die Farbe der Schrift
                     if (event.mouseButton.button == Mouse::Left)
                     {
                         listener.setGlobalVolume(i + 10);
@@ -93,7 +93,7 @@ void menueFunktionen::einstellungen(Font* font)
                 }
                 else if (text2.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
                 {
-                    // Wenn der Mauszeiger über dem Text8 liegt, ändere die Farbe der Schrift
+                    // Wenn der Mauszeiger Ã¼ber dem Text8 liegt, Ã¤ndere die Farbe der Schrift
                     if (event.mouseButton.button == Mouse::Left)
                     {
                         listener.setGlobalVolume(i - 10);
@@ -103,7 +103,7 @@ void menueFunktionen::einstellungen(Font* font)
                 }
                 else if (text0.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
                 {
-                    // Wenn der Mauszeiger über dem Text8 liegt, ändere die Farbe der Schrift
+                    // Wenn der Mauszeiger Ã¼ber dem Text8 liegt, Ã¤ndere die Farbe der Schrift
                     if (event.mouseButton.button == Mouse::Left)
                     {
                         window.close();
