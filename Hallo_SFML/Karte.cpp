@@ -10,7 +10,7 @@ void Karte::erstelleKarte()
 	RenderWindow window(videoMode, "Papas-Pizzeria");
 
 	sf::Texture texture; 
-	if(!texture.loadFromFile("Images/Karte.png"))
+	if(!texture.loadFromFile("C:/Users/Louis/Desktop/Neuer Ordner/KarteUpdate.png"))
 		{
 			cout << "Fehler" << endl; 
 			
@@ -19,14 +19,17 @@ void Karte::erstelleKarte()
     {
         // Erstelle ein Sprite mit der geladenen Textur
         sf::Sprite sprite(texture);
+        
         // Skaliere das Sprite um 20%
         float skalierungsfaktor = 0.8f; // 80% der Originalgröße
         sprite.setScale(skalierungsfaktor, skalierungsfaktor);
+        
         // Berechne die zentrierte Position unter Berücksichtigung der Skalierung
         sf::Vector2u windowSize = window.getSize();
         sf::Vector2f spriteSize = sf::Vector2f(sprite.getLocalBounds().width, sprite.getLocalBounds().height) * skalierungsfaktor;
         sf::Vector2f spritePosition((windowSize.x - spriteSize.x) / 2, (windowSize.y - spriteSize.y) / 2);
         sprite.setPosition(spritePosition);
+        
         // Hauptprogrammschleife
         while (window.isOpen()) {
         // Ereignisse verarbeiten
