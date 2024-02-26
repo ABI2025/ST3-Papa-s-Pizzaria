@@ -4,7 +4,6 @@
 using namespace sf;
 using namespace std;
 
-void Box::erstelleBox(){
 
 
-}
+
