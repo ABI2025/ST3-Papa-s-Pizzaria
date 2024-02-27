@@ -15,7 +15,7 @@ void Karte::erstelleKarte()
 	
 
 	sf::Texture texture; 
-	if(!texture.loadFromFile("C:/Users/Louis/Desktop/Neuer Ordner/KarteUpdate.png"))
+	if(!texture.loadFromFile("Images/KarteUpdate.png"))
 		{
 			cout << "Fehler" << endl; 
 			
@@ -71,7 +71,7 @@ void Karte::erstelleKarte()
 
             // Laden der Schriftart
             sf::Font font;
-            if (!font.loadFromFile("C:/Users/Louis/Desktop/Neuer Ordner/Crimson-Bold.ttf")) {
+            if (!font.loadFromFile("Font/Crimson-Bold.ttf")) {
                 // Fehlerbehandlung, falls die Schriftart nicht geladen werden kann
                 cout << "Fehler" << endl; 
             }

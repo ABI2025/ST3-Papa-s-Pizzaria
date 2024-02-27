@@ -1,2 +1,31 @@
 ﻿  Karte.cpp
-  Hallo_SFML.vcxproj -> C:\Users\Louis\Desktop\Neuer Ordner\x64\Debug\Hallo_SFML.exe
+sfml-graphics-s-d.lib(Font.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Font.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(GLCheck.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(GLCheck.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(Image.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Image.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(ImageLoader.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(RenderTarget.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(Shader.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Shader.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Texture.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(Shape.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Shape.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(Text.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Text.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(VertexArray.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(VertexArray.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-graphics-s-d.lib(RenderTextureImplFBO.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(RenderTextureImplFBO.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(GlContext.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(GlContext.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(JoystickManager.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(JoystickManager.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(VideoMode.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(VideoMode.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(WindowImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(WindowImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(JoystickImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(VideoModeImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(VideoModeImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(VulkanImplWin32.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(VulkanImplWin32.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(WindowImplWin32.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(WindowImplWin32.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(WglContext.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(WglContext.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-system-s-d.lib(String.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-system-s-d.lib(String.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(ALCheck.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(ALCheck.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(AudioDevice.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(AudioDevice.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(SoundBuffer.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(SoundBuffer.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(SoundFileFactory.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(SoundFileFactory.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(SoundFileReaderFlac.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(SoundFileReaderFlac.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(SoundFileWriterFlac.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(SoundFileWriterFlac.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(SoundFileWriterOgg.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(SoundFileWriterOgg.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-audio-s-d.lib(SoundFileWriterWav.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-audio-s-d.lib(SoundFileWriterWav.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+  Hallo_SFML.vcxproj -> C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\ST3-PapasPizzeria\x64\Debug\Hallo_SFML.exe
