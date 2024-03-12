@@ -2,6 +2,7 @@
 #include "menueFunktionen.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Karte.h"
 using namespace sf;
 void menue::startMenue()
 {
@@ -106,7 +107,8 @@ void menue::startMenue()
                 if (text8.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                     // Wenn der Mauszeiger über dem Text8 liegt, ändere die Farbe der Schrift
                     if (event.mouseButton.button == Mouse::Left) {
-                        text8.setFillColor(Color::Blue);
+                        Karte* map = new Karte;
+                        map->erstelleKarte();
                     }
                 }
                 else if (text9.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {

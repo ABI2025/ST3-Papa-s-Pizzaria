@@ -1,7 +1,1 @@
-﻿  Karte.cpp
-sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: PDB "sfml-graphics-s.pdb" wurde nicht mit "sfml-graphics-s-d.lib(RenderTarget.obj)" oder an "C:\Users\Louis\Desktop\Papas Pizzaria\x64\Debug\sfml-graphics-s.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-sfml-graphics-s-d.lib(View.obj) : warning LNK4099: PDB "sfml-graphics-s.pdb" wurde nicht mit "sfml-graphics-s-d.lib(View.obj)" oder an "C:\Users\Louis\Desktop\Papas Pizzaria\x64\Debug\sfml-graphics-s.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-sfml-graphics-s-d.lib(Shape.obj) : warning LNK4099: PDB "sfml-graphics-s.pdb" wurde nicht mit "sfml-graphics-s-d.lib(Shape.obj)" oder an "C:\Users\Louis\Desktop\Papas Pizzaria\x64\Debug\sfml-graphics-s.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-sfml-graphics-s-d.lib(Text.obj) : warning LNK4099: PDB "sfml-graphics-s.pdb" wurde nicht mit "sfml-graphics-s-d.lib(Text.obj)" oder an "C:\Users\Louis\Desktop\Papas Pizzaria\x64\Debug\sfml-graphics-s.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: PDB "sfml-window-s.pdb" wurde nicht mit "sfml-window-s-d.lib(JoystickImpl.obj)" oder an "C:\Users\Louis\Desktop\Papas Pizzaria\x64\Debug\sfml-window-s.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-  Hallo_SFML.vcxproj -> C:\Users\Louis\Desktop\Papas Pizzaria\x64\Debug\Hallo_SFML.exe
+﻿  Hallo_SFML.vcxproj -> C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\ST3-PapasPizzeria\x64\Debug\Hallo_SFML.exe
