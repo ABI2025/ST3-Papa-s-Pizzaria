@@ -1,4 +1,4 @@
-﻿  LINK : C:\Users\Louis\Desktop\Neuer Ordner\x64\Debug\Hallo_SFML.exe wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
+﻿  Box.cpp
 sfml-graphics-s-d.lib(Transformable.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Transformable.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Texture.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(RenderTarget.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
@@ -25,14 +25,16 @@ sfml-graphics-s-d.lib(VertexArray.obj) : warning LNK4099: PDB "" wurde nicht mit
 sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(ImageLoader.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-graphics-s-d.lib(Glsl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(Glsl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-graphics-s-d.lib(RenderTextureImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-graphics-s-d.lib(RenderTextureImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-sfml-window-s-d.lib(VideoMode.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(VideoMode.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(Mouse.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(Mouse.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(WindowBase.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(WindowBase.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(VideoMode.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(VideoMode.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(Window.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(Window.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(GlResource.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(GlResource.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(Context.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(Context.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-sfml-window-s-d.lib(VideoModeImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(VideoModeImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(InputImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(InputImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(Cursor.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(Cursor.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(WindowImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(WindowImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+sfml-window-s-d.lib(VideoModeImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(VideoModeImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(GlContext.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(GlContext.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(CursorImpl.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(CursorImpl.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
 sfml-window-s-d.lib(JoystickManager.obj) : warning LNK4099: PDB "" wurde nicht mit "sfml-window-s-d.lib(JoystickManager.obj)" oder an "" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.

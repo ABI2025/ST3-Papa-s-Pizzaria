@@ -22,7 +22,7 @@ void Karte::erstelleKarte()
         // Erstelle ein Sprite mit der geladenen Textur
         sf::Sprite sprite(texture);
         // Skaliere das Sprite um 20%
-        float skalierungsfaktor = 0.99f; // 80% der Originalgröße
+        float skalierungsfaktor = 1.0f; // 80% der Originalgröße
         sprite.setScale(skalierungsfaktor, skalierungsfaktor);
         // Berechne die zentrierte Position unter Berücksichtigung der Skalierung
         sf::Vector2u windowSize = window.getSize();
