@@ -4,15 +4,12 @@
 using namespace sf;
 using namespace std;
 
-void Box::erstelleBox(sf::RenderWindow& window)
-{
+void Box::erstelleBox(sf::RenderWindow& window) {
     sf::Texture texture;
-    if (!texture.loadFromFile("Images/Tisch.png"))
-    {
-        cout << "Fehler" << endl;
+    if (!texture.loadFromFile("Images/Tisch.png")) {
+        std::cout << "Fehler" << std::endl;
     }
-    else
-    {
+    else {
         sf::Sprite sprite(texture);
         sprite.setRotation(-90);
         float skalierungsfaktor = 0.5f;
@@ -24,10 +21,23 @@ void Box::erstelleBox(sf::RenderWindow& window)
 
         sf::Vector2u windowSize = window.getSize();
 
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-        {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             sf::Vector2f clickPosition = wartenAufMouse(window);
-            sprite.setPosition(clickPosition);
+
+            // Raster-Größe und -Startposition
+            float rasterStartX = 642.0f;
+            float rasterStartY = 157.0f;
+            float rasterWidthX = 64.0f;
+            float rasterWidthY = 63.75f;
+
+            // Berechnung der nächsten Rasterposition
+            int gridX = static_cast<int>((clickPosition.x - rasterStartX) / rasterWidthX);
+            int gridY = static_cast<int>((clickPosition.y - rasterStartY) / rasterWidthY);
+
+            // Setzen der Position auf das nächste Rasterkästchen
+            float newX = (rasterStartX + gridX * rasterWidthX + rasterWidthX / 2)-15; // Verschiebung um 18 Pixel in X
+            float newY = (rasterStartY + gridY * rasterWidthY + rasterWidthY / 2)+10; // Verschiebung um 41 Pixel in Y
+            sprite.setPosition(newX, newY);
         }
 
         window.draw(sprite);
@@ -37,26 +47,21 @@ void Box::erstelleBox(sf::RenderWindow& window)
 
 
 
-sf::Vector2f Box::wartenAufMouse(sf::RenderWindow& window)
-{
+sf::Vector2f Box::wartenAufMouse(sf::RenderWindow& window) {
     sf::Vector2f position;
     bool mouseClicked = false;
 
-    while (!mouseClicked)
-    {
+    while (!mouseClicked) {
+
         sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-            {
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
                 return position; // Rückgabe der aktuellen Position, falls das Fenster geschlossen wird
             }
 
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
-                if (event.mouseButton.button == sf::Mouse::Left)
-                {
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
                     // Umrechnen der Mausposition ins Fensterkoordinatensystem
                     position = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
                     std::cout << "Mausklick bei X: " << position.x << ", Y: " << position.y << std::endl;

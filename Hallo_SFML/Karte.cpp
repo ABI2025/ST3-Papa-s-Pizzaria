@@ -43,7 +43,24 @@ void Karte::erstelleKarte()
             // Sprite zeichnen
             window.draw(sprite);
 
-            //Fenster für Anfangsstory 
+           
+                erstellenArbeitsfläche(window);
+            
+            
+            // Fenster anzeigen
+            window.display();
+        }
+    }
+}
+void Karte::erstellenArbeitsfläche(sf::RenderWindow& window)
+{
+Box* arbFläche = new Box;
+arbFläche->erstelleBox(window);
+}
+
+void Karte::Story(sf::RenderWindow& window)
+{
+    //Fenster für Anfangsstory 
             /*/////////////////////////////////////////////////////////
 
                         // Berechne die Größe des Fensters
@@ -107,12 +124,24 @@ void Karte::erstelleKarte()
 
 
             /////////////////////////////////////////////////////////////*/
+}
 
-            Box* arbFläche = new Box;
-            arbFläche->erstelleBox(window);
 
-            // Fenster anzeigen
-            window.display();
+void Karte::waitForKeyPress(sf::RenderWindow& window, sf::Keyboard::Key key) {
+    bool keyPressed = false;
+
+    while (!keyPressed) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+                return;
+            }
+
+            if (event.type == sf::Event::KeyPressed && event.key.code == key) {
+                std::cout << "Leertaste wurde gedrückt!" << std::endl;
+                keyPressed = true;
+            }
         }
     }
 }
