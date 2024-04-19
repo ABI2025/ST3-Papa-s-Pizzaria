@@ -30,19 +30,28 @@ void Box::erstelleBox(sf::RenderWindow& window) {
             float rasterWidthX = 64.0f;
             float rasterWidthY = 63.75f;
 
+            // Begrenzung des Rasters
+            int maxX = 11; // Maximaler Index auf der x-Achse (0-basiert)
+            int maxY = 12; // Maximaler Index auf der y-Achse (0-basiert)
+
             // Berechnung der nächsten Rasterposition
             int gridX = static_cast<int>((clickPosition.x - rasterStartX) / rasterWidthX);
             int gridY = static_cast<int>((clickPosition.y - rasterStartY) / rasterWidthY);
 
+            // Begrenzung auf das Raster
+            gridX = std::max(0, std::min(gridX, maxX));
+            gridY = std::max(0, std::min(gridY, maxY));
+
             // Setzen der Position auf das nächste Rasterkästchen
-            float newX = (rasterStartX + gridX * rasterWidthX + rasterWidthX / 2)-15; // Verschiebung um 18 Pixel in X
-            float newY = (rasterStartY + gridY * rasterWidthY + rasterWidthY / 2)+10; // Verschiebung um 41 Pixel in Y
+            float newX = (rasterStartX + gridX * rasterWidthX + rasterWidthX / 2) - 15; // Verschiebung um 18 Pixel in X
+            float newY = (rasterStartY + gridY * rasterWidthY + rasterWidthY / 2) + 10; // Verschiebung um 41 Pixel in Y
             sprite.setPosition(newX, newY);
         }
 
         window.draw(sprite);
     }
 }
+
 
 
 

@@ -2,7 +2,9 @@
 #include <SFML/Graphics.hpp>
 class Karte
 {
+
 public: 
+	
 	void erstelleKarte(); 
 	void erstelleBox(); 
 	void handleInput();
