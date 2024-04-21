@@ -1,57 +1,62 @@
 #include "Karte.h"
 #include "Box.h"
+#include "Button.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-using namespace sf;
-using namespace std;
+using namespace std; 
 
-
-void Karte::erstelleKarte()
-{
-    VideoMode videoMode = VideoMode::getDesktopMode();
-    RenderWindow window(videoMode, "Papas-Pizzeria");
-
+void Karte::erstelleKarte() {
+    sf::VideoMode videoMode = sf::VideoMode::getDesktopMode();
+    sf::RenderWindow window(videoMode, "Papas-Pizzeria");
 
     sf::Texture texture;
-    if (!texture.loadFromFile("Images/KarteUpdate.png"))
-    {
-        cout << "Fehler" << endl;
+    if (!texture.loadFromFile("Images/KarteUpdate.png")) {
+        std::cout << "Fehler" << std::endl;
+        return;
     }
-    else
-    {
-        // Erstelle ein Sprite mit der geladenen Textur
-        sf::Sprite sprite(texture);
-        // Skaliere das Sprite um 20%
-        float skalierungsfaktor = 1.0f; // 80% der Originalgröße
-        sprite.setScale(skalierungsfaktor, skalierungsfaktor);
-        // Berechne die zentrierte Position unter Berücksichtigung der Skalierung
-        sf::Vector2u windowSize = window.getSize();
-        sf::Vector2f spriteSize = sf::Vector2f(sprite.getLocalBounds().width, sprite.getLocalBounds().height) * skalierungsfaktor;
-        sf::Vector2f spritePosition((windowSize.x - spriteSize.x) / 2, (windowSize.y - spriteSize.y) / 2);
-        sprite.setPosition(spritePosition);
-        // Hauptprogrammschleife
-        while (window.isOpen()) {
-            // Ereignisse verarbeiten
-            sf::Event event;
-            while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed) {
-                    window.close();
+
+    sf::Sprite sprite(texture);
+    float skalierungsfaktor = 1.0f;
+    sprite.setScale(skalierungsfaktor, skalierungsfaktor);
+    sf::Vector2u windowSize = window.getSize();
+    sf::Vector2f spriteSize = sf::Vector2f(sprite.getLocalBounds().width, sprite.getLocalBounds().height) * skalierungsfaktor;
+    sf::Vector2f spritePosition((windowSize.x - spriteSize.x) / 2, (windowSize.y - spriteSize.y) / 2);
+    sprite.setPosition(spritePosition);
+
+    // Erstelle den Button
+    Button button(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Blue);
+    button.setPosition(sf::Vector2f(100, 100));
+
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+                    if (button.isClicked(mousePos)) {
+                        std::cout << "Button clicked!" << std::endl;
+                        erstellenArbeitsfläche(window);
+                        cout << "Wird es übermahlt???" << endl; 
+                    }
                 }
             }
-            // Fenster löschen
-            window.clear();
-            // Sprite zeichnen
-            window.draw(sprite);
-
-           
-                erstellenArbeitsfläche(window);
-            
-            
-            // Fenster anzeigen
-            window.display();
         }
+
+        window.clear();
+        window.draw(sprite);
+        button.draw(window);
+        window.display();
     }
 }
+
+
+
+
 void Karte::erstellenArbeitsfläche(sf::RenderWindow& window)
 {
 Box* arbFläche = new Box;
