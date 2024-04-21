@@ -23,10 +23,13 @@ void Karte::erstelleKarte() {
     sf::Vector2f spritePosition((windowSize.x - spriteSize.x) / 2, (windowSize.y - spriteSize.y) / 2);
     sprite.setPosition(spritePosition);
 
-    // Erstelle den Button
-    Button button(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Blue);
-    button.setPosition(sf::Vector2f(100, 100));
+    // Erstelle den ersten Button
+    Button button1(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Blue);
+    button1.setPosition(sf::Vector2f(100, 100));
 
+    // Erstelle den zweiten Button
+    Button button2(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Red); // Ändere die Farbe oder Eigenschaften nach Bedarf
+    button2.setPosition(sf::Vector2f(100, 300)); // Ändere die Position des zweiten Buttons
 
     while (window.isOpen()) {
         sf::Event event;
@@ -38,10 +41,13 @@ void Karte::erstelleKarte() {
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-                    if (button.isClicked(mousePos)) {
-                        std::cout << "Button clicked!" << std::endl;
+                    if (button1.isClicked(mousePos)) {
+                        std::cout << "Button 1 clicked!" << std::endl;
                         erstellenArbeitsfläche(window);
-                        cout << "Wird es übermahlt???" << endl; 
+                    }
+                    else if (button2.isClicked(mousePos)) {
+                        std::cout << "Button 2 clicked!" << std::endl;
+                        Story(window); 
                     }
                 }
             }
@@ -49,104 +55,100 @@ void Karte::erstelleKarte() {
 
         window.clear();
         window.draw(sprite);
-        button.draw(window);
+        button1.draw(window);
+        button2.draw(window);
         window.display();
     }
 }
 
-
-
-
-void Karte::erstellenArbeitsfläche(sf::RenderWindow& window)
-{
-Box* arbFläche = new Box;
-arbFläche->erstelleBox(window);
+void Karte::erstellenArbeitsfläche(sf::RenderWindow& window) {
+    Box* arbFläche = new Box;
+    arbFläche->erstelleBox(window);
 }
+
 
 void Karte::Story(sf::RenderWindow& window)
 {
-    //Fenster für Anfangsstory 
-            /*/////////////////////////////////////////////////////////
+    // Berechne die Größe des Fensters
+    sf::Vector2u windowSize = window.getSize();
 
-                        // Berechne die Größe des Fensters
-                        sf::Vector2u windowSize = window.getSize();
+    // Erstelle ein Rechteck-Shape
+    sf::RectangleShape box(sf::Vector2f(1100.f, 300.f)); // Größe angepasst
 
+    // Berechne die Position der Box, damit sie mittig unten im Fenster liegt
+    sf::Vector2f position((windowSize.x - box.getSize().x) / 2.f, windowSize.y - box.getSize().y);
 
-                        // Erstelle ein Rechteck-Shape
-                        sf::RectangleShape box(sf::Vector2f(1100.f, 300.f)); // Größe angepasst
+    // Setze die Position des Balkens
+    box.setPosition(position);
+    box.setFillColor(sf::Color(245, 245, 220));
 
+    // Laden der Schriftart
+    sf::Font font;
+    if (!font.loadFromFile("Font/Crimson-Bold.ttf")) {
+        // Fehlerbehandlung, falls die Schriftart nicht geladen werden kann
+        cout << "Fehler" << endl;
+    }
 
-                        // Berechne die Position der Box, damit sie mittig unten im Fenster liegt
-                        sf::Vector2f position((windowSize.x - box.getSize().x) / 2.f, windowSize.y - box.getSize().y);
+    // Konfiguration des ersten Textes
+    sf::Text text;
+    text.setString("Hallo Giovanni! \nIch habe große Neuigkeiten für dich. \nEs ist so weit, mein kleines Restaurant, La Taverna Italiana braucht langsam einen neuen Chef! \nWer könnte es besser machen als du, mein Neffe? Bisher hast du mich noch nie enttäuscht, \negal was ich von dir verlangt habe. \nDu hast Talent, Leidenschaft, und - ganz wichtig - Liebe für Pizza! \n[DRÜCKE SPACE]"); // Textinhalt festlegen
+    text.setCharacterSize(24);
+    text.setFont(font);// Schriftgröße festlegen
+    text.setFillColor(sf::Color::Black); // Farbe festlegen
 
+    // Position des Textes festlegen (zum Beispiel zentriert in der Box)
+    sf::FloatRect textBounds = text.getLocalBounds();
+    text.setOrigin(textBounds.left + textBounds.width / 2.0f,
+        textBounds.top + textBounds.height / 2.0f);
+    text.setPosition(box.getPosition() + sf::Vector2f(box.getSize().x / 2.0f, box.getSize().y / 2.0f));
 
-                        // Setze die Position des Balkens
-                        box.setPosition(position);
-                        box.setFillColor(sf::Color(245, 245, 220));
+    //Abtasten nach der Leertaste
+    // Behandle Ereignisse
+    sf::Event event2;
+    window.draw(box);
 
-                        // Laden der Schriftart
-                        sf::Font font;
-                        if (!font.loadFromFile("Font/Crimson-Bold.ttf")) {
-                            // Fehlerbehandlung, falls die Schriftart nicht geladen werden kann
-                            cout << "Fehler" << endl;
-                        }
+    // Zeichne den Text auf die Karte
+    window.draw(text);
+    window.display();
 
-                        // Konfiguration des ersten Textes
-                        sf::Text text;
-                        text.setString("Hallo Giovanni! \nIch habe große Neuigkeiten für dich. \nEs ist so weit, mein kleines Restaurant, La Taverna Italiana braucht langsam einen neuen Chef! \nWer könnte es besser machen als du, mein Neffe? Bisher hast du mich noch nie enttäuscht, \negal was ich von dir verlangt habe. \nDu hast Talent, Leidenschaft, und - ganz wichtig - Liebe für Pizza! \n[DRÜCKE SPACE]"); // Textinhalt festlegen
-                        text.setCharacterSize(24);
-                        text.setFont(font);// Schriftgröße festlegen
-                        text.setFillColor(sf::Color::Black); // Farbe festlegen
+    cout << "Hier wurde die Geschichte ausgegeben" << endl;
 
-
-                        // Position des Textes festlegen (zum Beispiel zentriert in der Box)
-                        sf::FloatRect textBounds = text.getLocalBounds();
-                        text.setOrigin(textBounds.left + textBounds.width / 2.0f,
-                        textBounds.top + textBounds.height / 2.0f);
-                        text.setPosition(box.getPosition() + sf::Vector2f(box.getSize().x / 2.0f, box.getSize().y / 2.0f));
-                        //Abtasten nach der Leertaste
-                        // Behandle Ereignisse
-                        sf::Event event2;
-                        while (window.pollEvent(event2))
-                        {
-                            if (event2.type == sf::Event::Closed)
-                            {
-                                window.close();
-                            }
-                        }
-                        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) // Wenn Leertaste gedrückt wird, soll ein neuer text erscheinen
-                        {
-                            // Lösche den Text
-                            text.setString("In den nächsten Wochen lernst du alles: Teig, Sauce, Belag und ganz wichtig,\n dass Rezepte von deiner Großmutter Assunta Maresca ... also sehe es als Ehre an. \nDie italienische Küche ist mehr als Essen, es ist Tradition, Familie, Leidenschaft! \nDu wirst das großartig während meines Ausflugs in Sizilien machen, da bin ich mir sicher.\nIch bin sicher, du machst La Taverna Italiana noch erfolgreicher, als ich es mir je ausmalen könnte.\nDein Pate \nP.S.: Bitte vergiss nie: Amore ist die wichtigste Zutat!     "); // Textinhalt festlegen
-                        }
-
-                        // Zeichne die Box auf die Karte
-                        window.draw(box);
-
-
-                        // Zeichne den Text auf die Karte
-                        window.draw(text);
-
-
-            /////////////////////////////////////////////////////////////*/
-}
-
-
-void Karte::waitForKeyPress(sf::RenderWindow& window, sf::Keyboard::Key key) {
-    bool keyPressed = false;
-
-    while (!keyPressed) {
+    bool waitForE = false;
+    while (!waitForE) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
-                return;
+                return; // Beende die Funktion, wenn das Fenster geschlossen wird
             }
+            if (event.type == sf::Event::TextEntered) {
+                if (event.text.unicode == 'e') {
+                    cout << "E" << endl;
+                    waitForE = true; // Setze die Flagge, um die Schleife zu verlassen
+                    break; // Verlasse die innere Schleife, wenn 'e' eingegeben wird
+                }
+            }
+            if (event.type == sf::Event::TextEntered) {
+                if (event.text.unicode == ' ') {
+                    cout << "F" << endl;
+                    text.setString("In den nächsten Wochen lernst du alles: Teig, Sauce, Belag und ganz wichtig,\n dass Rezepte von deiner Großmutter Assunta Maresca ... also sehe es als Ehre an. \nDie italienische Küche ist mehr als Essen, es ist Tradition, Familie, Leidenschaft! \nDu wirst das großartig während meines Ausflugs in Sizilien machen, da bin ich mir sicher.\nIch bin sicher, du machst La Taverna Italiana noch erfolgreicher, als ich es mir je ausmalen könnte.\nDein Pate \nP.S.: Bitte vergiss nie: Amore ist die wichtigste Zutat!  E   "); // Textinhalt festlegen
 
-            if (event.type == sf::Event::KeyPressed && event.key.code == key) {
-                std::cout << "Leertaste wurde gedrückt!" << std::endl;
-                keyPressed = true;
+                    // Zeichne die Box auf die Karte
+                    window.draw(box);
+
+                    // Zeichne den Text auf die Karte
+                    window.draw(text);
+                    window.display();
+                }
             }
         }
     }
+
+    window.clear();
+    // Zeichne die Box auf die Karte
+    window.draw(box);
+
+    // Zeichne den Text auf die Karte
+    window.draw(text);
+    window.display();
 }

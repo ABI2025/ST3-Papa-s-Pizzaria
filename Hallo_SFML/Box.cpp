@@ -49,6 +49,25 @@ void Box::erstelleBox(sf::RenderWindow& window) {
         }
 
         window.draw(sprite);
+        window.display(); 
+
+        bool waitForE = false;
+        while (!waitForE) {
+            sf::Event event;
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                    return; // Beende die Funktion, wenn das Fenster geschlossen wird
+                }
+                if (event.type == sf::Event::TextEntered) {
+                    if (event.text.unicode == 'e') {
+                        cout << "E" << endl;
+                        waitForE = true; // Setze die Flagge, um die Schleife zu verlassen
+                        break; // Verlasse die innere Schleife, wenn 'e' eingegeben wird
+                    }
+                }
+            }
+        }
     }
 }
 

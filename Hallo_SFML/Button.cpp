@@ -15,6 +15,6 @@ bool Button::isClicked(const sf::Vector2f& mousePos) const {
     return (mousePos.x >= position.x && mousePos.x <= position.x + size.x &&
         mousePos.y >= position.y && mousePos.y <= position.y + size.y);
 }
-void Button::setPosition(const sf::Vector2f& newPosition) {
+  void Button::setPosition(const sf::Vector2f& newPosition) {
     position = newPosition;
 }
