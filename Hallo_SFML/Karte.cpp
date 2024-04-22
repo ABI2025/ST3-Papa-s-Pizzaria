@@ -34,8 +34,18 @@ void Karte::erstelleKarte() {
     // Erstelle den zweiten Button
     Button button2(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Red); // Ändere die Farbe oder Eigenschaften nach Bedarf
     button2.setPosition(sf::Vector2f(100, 300)); // Ändere die Position des zweiten Buttons
-
+     
     while (window.isOpen()) {
+        
+        window.clear(); 
+        window.draw(sprite); 
+        Box* tisch = new Box;
+        tisch->readCSVAndTrack(window);
+        button1.draw(window);
+        button2.draw(window);
+        cheff01.zeichnen(window);
+        window.display();
+        
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -56,13 +66,8 @@ void Karte::erstelleKarte() {
                 }
             }
         }
-
-        window.clear();
-        window.draw(sprite);
-        button1.draw(window);
-        button2.draw(window);
-        cheff01.zeichnen(window);
-        window.display();
+         
+        
     }
 }
 
