@@ -4,7 +4,11 @@
 #include "littleCheff.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <SFML/Audio.hpp>
 using namespace std; 
+
+
+
 
 void Karte::erstelleKarte() {
     sf::VideoMode videoMode = sf::VideoMode::getDesktopMode();
@@ -25,7 +29,14 @@ void Karte::erstelleKarte() {
     sprite.setPosition(spritePosition);
 
     //lade littleCheff
-    littleCheff cheff01(200, 200, 30, 70);
+    float x = 960;
+    float y = 452;
+    littleCheff cheff01(x, y, 64, 90);
+
+    //litteCheff WorldBorder
+    sf::Vector2f boundaryTopLeft(642.0, 85.0); // Top-left corner
+    sf::Vector2f boundaryBottomRight(1412.0, 990.0); // Bottom-right corner
+    
 
     // Erstelle den ersten Button
     Button button1(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Blue);
@@ -34,7 +45,10 @@ void Karte::erstelleKarte() {
     // Erstelle den zweiten Button
     Button button2(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Red); // Ändere die Farbe oder Eigenschaften nach Bedarf
     button2.setPosition(sf::Vector2f(100, 300)); // Ändere die Position des zweiten Buttons
-     
+
+    bool isRunning = true; // Flag to control the game loop
+    bool isPaused = false; // Flag to indicate if the game is paused
+
     while (window.isOpen()) {
         
         window.clear(); 
@@ -52,6 +66,12 @@ void Karte::erstelleKarte() {
                 window.close();
             }
 
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    isPaused = !isPaused; // Toggle pause/resume state
+                }
+            }
+
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
@@ -66,8 +86,67 @@ void Karte::erstelleKarte() {
                 }
             }
         }
-         
+
+        window.clear();
+        window.draw(sprite);
+        button1.draw(window);
+        button2.draw(window);
+        cheff01.zeichnen(window);
+        window.display();
+
         
+
+        // Check boundary limits and adjust position
+        if (y < boundaryTopLeft.y) {
+            y = boundaryTopLeft.y; // Stay at the top boundary
+        }
+        else if (y > boundaryBottomRight.y - cheff01.getHoehe()) {
+            y = boundaryBottomRight.y - cheff01.getHoehe(); // Stay at the bottom boundary
+        }
+
+        if (x < boundaryTopLeft.x) {
+            x = boundaryTopLeft.x; // Stay at the left boundary
+        }
+        else if (x > boundaryBottomRight.x - cheff01.getBreite()) {
+            x = boundaryBottomRight.x - cheff01.getBreite(); // Stay at the right boundary
+        }
+
+        // Update the position of the littleCheff
+        cheff01.setX(x);
+        cheff01.setY(y);
+
+
+        // Check if the game is paused
+        if (isPaused) {
+
+            // Wait for a key press to resume
+            sf::Event resumeEvent;
+            while (window.pollEvent(resumeEvent)) {
+                if (resumeEvent.type == sf::Event::KeyPressed) {
+                    if (resumeEvent.key.code == sf::Keyboard::Escape) {
+                        isPaused = false; // Resume the game if Esc is pressed
+                        break; // Exit the resumeEvent loop
+                    }
+                }
+            }
+        }
+        else 
+        {
+            // Handle movement when the game is not paused
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+                y -= 0.5; // Move up
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+                y += 0.5; // Move down
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+                x -= 0.5; // Move left
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+                x += 0.5; // Move right
+            }
+        }
+
     }
 }
 
