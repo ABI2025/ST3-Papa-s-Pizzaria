@@ -1,6 +1,7 @@
 #include "Karte.h"
 #include "Box.h"
 #include "Button.h"
+#include "littleCheff.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace std; 
@@ -22,6 +23,9 @@ void Karte::erstelleKarte() {
     sf::Vector2f spriteSize = sf::Vector2f(sprite.getLocalBounds().width, sprite.getLocalBounds().height) * skalierungsfaktor;
     sf::Vector2f spritePosition((windowSize.x - spriteSize.x) / 2, (windowSize.y - spriteSize.y) / 2);
     sprite.setPosition(spritePosition);
+
+    //lade littleCheff
+    littleCheff cheff01(200, 200, 30, 70);
 
     // Erstelle den ersten Button
     Button button1(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Blue);
@@ -57,6 +61,7 @@ void Karte::erstelleKarte() {
         window.draw(sprite);
         button1.draw(window);
         button2.draw(window);
+        cheff01.zeichnen(window);
         window.display();
     }
 }

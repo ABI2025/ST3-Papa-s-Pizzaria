@@ -136,6 +136,7 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Karte.cpp" />
+    <ClCompile Include="littleCheff.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menue.cpp" />
     <ClCompile Include="menueFunktionen.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Box.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Karte.h" />
+    <ClInclude Include="littleCheff.h" />
     <ClInclude Include="menue.h" />
     <ClInclude Include="menueFunktionen.h" />
   </ItemGroup>
