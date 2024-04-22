@@ -46,11 +46,20 @@ void Karte::erstelleKarte() {
     Button button2(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Red); // Ändere die Farbe oder Eigenschaften nach Bedarf
     button2.setPosition(sf::Vector2f(100, 300)); // Ändere die Position des zweiten Buttons
 
+    bool isRunning = true; // Flag to control the game loop
+    bool isPaused = false; // Flag to indicate if the game is paused
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
+            }
+
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    isPaused = !isPaused; // Toggle pause/resume state
+                }
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
@@ -75,19 +84,7 @@ void Karte::erstelleKarte() {
         cheff01.zeichnen(window);
         window.display();
 
-        // Handle keyboard input
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            y -= 0.5; // Move up
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            y += 0.5; // Move down
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-            x -= 0.5; // Move left
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            x += 0.5; // Move right
-        }
+        
 
         // Check boundary limits and adjust position
         if (y < boundaryTopLeft.y) {
@@ -108,6 +105,37 @@ void Karte::erstelleKarte() {
         cheff01.setX(x);
         cheff01.setY(y);
 
+
+        // Check if the game is paused
+        if (isPaused) {
+
+            // Wait for a key press to resume
+            sf::Event resumeEvent;
+            while (window.pollEvent(resumeEvent)) {
+                if (resumeEvent.type == sf::Event::KeyPressed) {
+                    if (resumeEvent.key.code == sf::Keyboard::Escape) {
+                        isPaused = false; // Resume the game if Esc is pressed
+                        break; // Exit the resumeEvent loop
+                    }
+                }
+            }
+        }
+        else 
+        {
+            // Handle movement when the game is not paused
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+                y -= 0.5; // Move up
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+                y += 0.5; // Move down
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+                x -= 0.5; // Move left
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+                x += 0.5; // Move right
+            }
+        }
 
     }
 }
