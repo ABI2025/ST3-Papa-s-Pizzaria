@@ -4,11 +4,10 @@
 #include "littleCheff.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <chrono>
+#include <thread>
 #include <SFML/Audio.hpp>
-using namespace std; 
-
-
-
+using namespace std;
 
 void Karte::erstelleKarte() {
     sf::VideoMode videoMode = sf::VideoMode::getDesktopMode();
@@ -36,7 +35,6 @@ void Karte::erstelleKarte() {
     //litteCheff WorldBorder
     sf::Vector2f boundaryTopLeft(642.0, 85.0); // Top-left corner
     sf::Vector2f boundaryBottomRight(1412.0, 990.0); // Bottom-right corner
-    
 
     // Erstelle den ersten Button
     Button button1(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Blue);
@@ -46,20 +44,27 @@ void Karte::erstelleKarte() {
     Button button2(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Red); // Ändere die Farbe oder Eigenschaften nach Bedarf
     button2.setPosition(sf::Vector2f(100, 300)); // Ändere die Position des zweiten Buttons
 
+    // Erstelle den dritten Button
+    Button button3(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Green); // Ändere die Farbe oder Eigenschaften nach Bedarf
+    button3.setPosition(sf::Vector2f(100, 500)); // Ändere die Position des dritten Buttons
+
     bool isRunning = true; // Flag to control the game loop
     bool isPaused = false; // Flag to indicate if the game is paused
 
+    int credits = 0; // Counter für Credits
+
     while (window.isOpen()) {
-        
-        window.clear(); 
-        window.draw(sprite); 
+
+        window.clear();
+        window.draw(sprite);
         Box* tisch = new Box;
         tisch->readCSVAndTrack(window);
         button1.draw(window);
         button2.draw(window);
+        button3.draw(window);
         cheff01.zeichnen(window);
         window.display();
-        
+
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -77,24 +82,20 @@ void Karte::erstelleKarte() {
                     sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
                     if (button1.isClicked(mousePos)) {
                         std::cout << "Button 1 clicked!" << std::endl;
-                        erstellenArbeitsfläche(window);
+                        Box* arbFläche = new Box;
+                        arbFläche->erstelleBox(window);
                     }
                     else if (button2.isClicked(mousePos)) {
                         std::cout << "Button 2 clicked!" << std::endl;
-                        Story(window); 
+                        Story(window);
+                    }
+                    else if (button3.isClicked(mousePos)) {
+                        std::cout << "Button 3 clicked!" << std::endl;
+                        drawRedCircleOnClick(window, credits); // Übergebe den Counter für Credits
                     }
                 }
             }
         }
-
-        window.clear();
-        window.draw(sprite);
-        button1.draw(window);
-        button2.draw(window);
-        cheff01.zeichnen(window);
-        window.display();
-
-        
 
         // Check boundary limits and adjust position
         if (y < boundaryTopLeft.y) {
@@ -115,7 +116,6 @@ void Karte::erstelleKarte() {
         cheff01.setX(x);
         cheff01.setY(y);
 
-
         // Check if the game is paused
         if (isPaused) {
 
@@ -130,8 +130,7 @@ void Karte::erstelleKarte() {
                 }
             }
         }
-        else 
-        {
+        else {
             // Handle movement when the game is not paused
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
                 y -= 0.5; // Move up
@@ -150,14 +149,7 @@ void Karte::erstelleKarte() {
     }
 }
 
-void Karte::erstellenArbeitsfläche(sf::RenderWindow& window) {
-    Box* arbFläche = new Box;
-    arbFläche->erstelleBox(window);
-}
-
-
-void Karte::Story(sf::RenderWindow& window)
-{
+void Karte::Story(sf::RenderWindow& window) {
     // Berechne die Größe des Fensters
     sf::Vector2u windowSize = window.getSize();
 
@@ -240,4 +232,72 @@ void Karte::Story(sf::RenderWindow& window)
     // Zeichne den Text auf die Karte
     window.draw(text);
     window.display();
+}
+
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <chrono>
+#include <thread>
+
+void Karte::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
+    bool mouseClicked = false; // Flagge, um zu überprüfen, ob die Maus bereits geklickt wurde
+
+    while (window.isOpen() && !mouseClicked) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    // Holen der Mausposition in Bezug auf das Fenster
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+                    // Erstellen eines roten Kreises (oder Punktes)
+                    sf::CircleShape dot(15); // Radius von 15 (großer Punkt)
+                    dot.setFillColor(sf::Color::Red);
+                    dot.setPosition(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+                    // Zeichnen des Punktes auf das Fenster
+                    window.draw(dot);
+                    window.display();
+
+                    // Setze die Flagge, dass die Maus geklickt wurde
+                    mouseClicked = true;
+
+                    // Warte 5 Sekunden
+                    std::this_thread::sleep_for(std::chrono::seconds(5));
+
+                    // Ändere die Farbe des Punktes in Grün
+                    dot.setFillColor(sf::Color::Green);
+
+                    // Zeichne den Punkt erneut, um die Farbänderung anzuzeigen
+                    window.draw(dot);
+                    window.display();
+
+                    // Erhöhe den Counter für Credits
+                    credits++;
+                    cout << "Creditis " << credits << endl;
+                }
+            }
+        }
+    }
+
+    bool waitForE = false;
+    while (!waitForE) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+                return; // Beende die Funktion, wenn das Fenster geschlossen wird
+            }
+            if (event.type == sf::Event::TextEntered) {
+                if (event.text.unicode == 'e') {
+                    std::cout << "E" << std::endl;
+                    waitForE = true; // Setze die Flagge, um die Schleife zu verlassen
+                    break; // Verlasse die innere Schleife, wenn 'e' eingegeben wird
+                }
+            }
+        }
+    }
 }

@@ -93,6 +93,7 @@ void Box::erstelleBoxMitPosition(sf::RenderWindow& window, float positionX, floa
 
         window.draw(sprite);
         
+        
 
     }
 }
@@ -186,9 +187,6 @@ void Box::writeToCSVFromCoordinates(int x, int y) {
         std::cerr << "Unable to open file: Images/SpeicherStandort.csv" << std::endl;
     }
 } 
-
-
-
 
 // Geht 
 std::vector<std::pair<int, int>> Box::readCSVAndTrack(sf::RenderWindow& window) {
