@@ -32,5 +32,6 @@ private:
 	float y;
 	float breite;
 	float hoehe;
+	sf::RenderWindow* window;
 };
 
