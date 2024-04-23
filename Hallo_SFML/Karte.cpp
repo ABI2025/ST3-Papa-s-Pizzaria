@@ -133,16 +133,16 @@ void Karte::erstelleKarte() {
         else {
             // Handle movement when the game is not paused
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                y -= 0.5; // Move up
+                y -= 5.0; // Move up
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                y += 0.5; // Move down
+                y += 5.0; // Move down
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                x -= 0.5; // Move left
+                x -= 5.0; // Move left
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                x += 0.5; // Move right
+                x += 5.0; // Move right
             }
         }
 
