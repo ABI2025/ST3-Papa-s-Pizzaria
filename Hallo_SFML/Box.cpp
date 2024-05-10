@@ -127,37 +127,42 @@ sf::Vector2f Box::wartenAufMouse(sf::RenderWindow& window) {
 }
 // Geht noch nicht 100 % 
 void Box::writeToCSVFromCoordinates(int x, int y) {
+    // Definiere die Abmessungen des Rasters und die Startposition
     const float rasterStartX = 642.0f;
     const float rasterStartY = 157.0f;
     const float rasterWidthX = 64.0f;
     const float rasterWidthY = 63.75f;
 
-    // Berechnung des Raster-Index
+    // Berechne den Rasterindex basierend auf den übergebenen Koordinaten
     int gridX = static_cast<int>((x - rasterStartX) / rasterWidthX);
     int gridY = static_cast<int>((y - rasterStartY) / rasterWidthY);
 
-    // Begrenzung des Rasters
-    int maxX = 11; // Maximaler Index auf der x-Achse (0-basiert)
-    int maxY = 12; // Maximaler Index auf der y-Achse (0-basiert)
+    // Definiere die maximalen Indizes des Rasters (0-basiert)
+    const int maxX = 12; // Maximaler Index auf der x-Achse
+    const int maxY = 11; // Maximaler Index auf der y-Achse
+
+    // Stelle sicher, dass die Rasterindizes innerhalb der Grenzen bleiben
     gridX = std::max(0, std::min(gridX, maxX));
     gridY = std::max(0, std::min(gridY, maxY));
 
-    // Raster initialisieren
-    std::vector<std::vector<bool>> occupied(13, std::vector<bool>(12, false));
-    char value;
+    // Initialisiere den Vektor zur Speicherung des Rasterstatus
+    std::vector<std::vector<bool>> occupied(12, std::vector<bool>(13, false));
 
-    // CSV-Datei lesen und vorhandene Werte übernehmen
+    // Lese vorhandene Werte aus der CSV-Datei
+    char value;
     std::ifstream infile("Images/SpeicherStandort.csv");
     if (infile.is_open()) {
-        for (int i = 0; i < 13; ++i) {
-            for (int j = 0; j < 12; ++j) {
+        for (int i = 0; i < 12; ++i) {
+            for (int j = 0; j < 13; ++j) {
                 if (infile.get(value)) {
                     if (value == '1') {
                         occupied[i][j] = true;
                     }
                 }
-                // Ignoriere Komma-Trennzeichen und Zeilenumbrüche
-                infile.ignore(std::numeric_limits<std::streamsize>::max(), ',');
+                // Ignoriere Komma-Trennzeichen
+                if (j < 12) {
+                    infile.ignore(std::numeric_limits<std::streamsize>::max(), ',');
+                }
             }
             // Ignoriere den Zeilenumbruch am Ende jeder Zeile
             infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -171,14 +176,16 @@ void Box::writeToCSVFromCoordinates(int x, int y) {
     // Schreibe den Rasterstatus in die CSV-Datei
     std::ofstream outfile("Images/SpeicherStandort.csv", std::ios::trunc); // Öffne die Datei und lösche den Inhalt
     if (outfile.is_open()) {
-        for (int i = 0; i < 13; ++i) {
-            for (int j = 0; j < 12; ++j) {
-                // Schreibe nur "1", wenn das Feld in der Datei oder im Array belegt ist
+        for (int i = 0; i < 12; ++i) {
+            for (int j = 0; j < 13; ++j) {
+                // Schreibe "1", wenn das Feld besetzt ist, sonst "0"
                 outfile << (occupied[i][j] ? "1" : "0");
-                if (j < 11) {
+                // Füge ein Komma hinzu, außer am Ende jeder Zeile
+                if (j < 12) {
                     outfile << ",";
                 }
             }
+            // Füge einen Zeilenumbruch am Ende jeder Zeile hinzu
             outfile << "\n";
         }
         outfile.close();
@@ -186,7 +193,9 @@ void Box::writeToCSVFromCoordinates(int x, int y) {
     else {
         std::cerr << "Unable to open file: Images/SpeicherStandort.csv" << std::endl;
     }
-} 
+}
+
+
 
 // Geht 
 std::vector<std::pair<int, int>> Box::readCSVAndTrack(sf::RenderWindow& window) {
