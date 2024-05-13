@@ -1,3 +1,6 @@
+<img src="https://github.com/ABI2025/ST3-Papa-s-Pizzaria/blob/main/Hallo_SFML/Images/Logo.jpg" width="250" height="250">
+
+
 # Papas Pizzaria
 
 In unserem kleinen gemütlichen Spiel einer familieren Pizzaria, kannst du deine Küche von Grund auf selbst gestallten. Platziere deine Arbeitsplatten wo es dir am besten past, und verzauber deine Kunden mit den besten Pizzen der Stadt. Manage alles über deinen Spielkarakter und liefere den Kunden ihre Bestellung. Das Spiel wurde mittels SFML in C++ (Visual Studio 2022) programiert und ist soweit spieltüchtig. Viel Spaß beim austesten.
