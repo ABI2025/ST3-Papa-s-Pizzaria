@@ -223,8 +223,8 @@ std::vector<std::pair<int, int>> Box::readCSVAndTrack(sf::RenderWindow& window) 
             // Berechnung der Koordinaten basierend auf Raster-Größe und -Startposition
             int coordX = static_cast<int>(rasterStartX + x * rasterWidthX + rasterWidthX / 2);
             int coordY = static_cast<int>(rasterStartY + y * rasterWidthY + rasterWidthY / 2);
-            cout << "X " << coordX << " Y " << coordY << endl;
-            cout << "Neue Ausgabe " << endl;
+            //cout << "X " << coordX << " Y " << coordY << endl;
+            //cout << "Neue Ausgabe " << endl;
             erstelleBoxMitPosition(window, coordX, coordY);
             trackedCoordinates.push_back(std::make_pair(coordX, coordY));
         }

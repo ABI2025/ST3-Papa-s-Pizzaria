@@ -13,6 +13,30 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
     Box box;
     std::vector<std::pair<int, int>> trackedCoordinates = box.readCSVAndTrack(window);
 
+    // Lade das erste Bild
+    sf::Texture texture1;
+    if (!texture1.loadFromFile("Images/PizzaSchinkenSalami.png")) {
+        std::cerr << "Fehler beim Laden des ersten Bildes!" << std::endl;
+        return;
+    }
+
+    // Lade das zweite Bild
+    sf::Texture texture2;
+    if (!texture2.loadFromFile("Images/PizzaMagaritaFertig.png")) {
+        std::cerr << "Fehler beim Laden des zweiten Bildes!" << std::endl;
+        return;
+    }
+
+    // Erstelle den Sprite für das erste Bild
+    sf::Sprite image;
+    image.setTexture(texture1);
+
+    // Raster-Größe und -Startposition basierend auf der Anzahl der Module
+    float rasterStartX = 642.0f;
+    float rasterStartY = 157.0f;
+    float rasterWidthX = 64.0f; // Breite des Rasters
+    float rasterWidthY = 63.75f; // Höhe des Rasters
+
     while (window.isOpen() && !mouseClicked) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -23,56 +47,44 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     // Holen der Mausposition in Bezug auf das Fenster
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-
+                    
                     // Überprüfen, ob die Mausposition mit den Koordinaten eines Moduls übereinstimmt
                     bool validPlacement = false;
+                   
                     for (const auto& coord : trackedCoordinates) {
-                        if (mousePos.x > coord.first - 32 && mousePos.x < coord.first + 32 &&
-                            mousePos.y > coord.second - 32 && mousePos.y < coord.second + 32) {
+                        if (mousePos.x > coord.first - (rasterWidthX / 2) && mousePos.x < coord.first + (rasterWidthX / 2) &&
+                            mousePos.y > coord.second - (rasterWidthY / 2) && mousePos.y < coord.second + (rasterWidthY / 2)) {
+                        
                             validPlacement = true;
                             break;
                         }
                     }
 
                     if (validPlacement) {
-                        // Berechne die Mittelpunktposition des Rasters
-                        float rasterStartX = 642.0f;
-                        float rasterStartY = 157.0f;
-                        float rasterWidthX = 64.0f;
-                        float rasterWidthY = 63.75f;
+                        // Setze die Position des Sprites auf die Mausposition
+                        image.setPosition(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
-                        int gridX = static_cast<int>((mousePos.x - rasterStartX) / rasterWidthX);
-                        int gridY = static_cast<int>((mousePos.y - rasterStartY) / rasterWidthY);
+                        // Zeichne das erste Bild auf das Fenster
+                        window.draw(image);
+                        window.display();
 
-                        float newX = rasterStartX + gridX * rasterWidthX + rasterWidthX / 2;
-                        float newY = rasterStartY + gridY * rasterWidthY + rasterWidthY / 2;
+                        // Warte 5 Sekunden
+                        std::this_thread::sleep_for(std::chrono::seconds(1));
 
-                        // Erstellen eines roten Kreises (oder Punktes)
-                        sf::CircleShape dot(15); // Radius von 15 (großer Punkt)
-                        dot.setFillColor(sf::Color::Red);
-                        dot.setPosition(newX, newY);
+                        // Ändere die Textur des Sprites auf die des zweiten Bildes
+                        image.setTexture(texture2);
 
-                        // Zeichnen des Punktes auf das Fenster
-                        window.draw(dot);
+                        // Zeichne das zweite Bild an derselben Position
+                        window.draw(image);
                         window.display();
 
                         // Setze die Flagge, dass die Maus geklickt wurde
                         mouseClicked = true;
 
-                        // Warte 5 Sekunden
-                        std::this_thread::sleep_for(std::chrono::seconds(5));
-
-                        // Ändere die Farbe des Punktes in Grün
-                        dot.setFillColor(sf::Color::Green);
-
-                        // Zeichne den Punkt erneut, um die Farbänderung anzuzeigen
-                        window.draw(dot);
-                        window.display();
-
                         // Erhöhe den Counter für Credits
                         credits++;
-                        std::cout << "Creditis " << credits << std::endl;
-                        
+                        std::cout << "Credits " << credits << std::endl;
+
                         // Warte auf die Eingabe 'e'
                         bool waitForE = false;
                         while (!waitForE) {
@@ -93,13 +105,18 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                         }
                     }
                     else {
-                        std::cout << "Ein Kreis kann nur auf einem Modul platziert werden!" << std::endl;
+                        std::cout << "Ein Bild kann nur auf einem Modul platziert werden!" << std::endl;
                     }
                 }
             }
         }
     }
 }
+
+
+
+
+
 
 
 
