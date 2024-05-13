@@ -82,8 +82,7 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                         mouseClicked = true;
 
                         // Erhöhe den Counter für Credits
-                        credits++;
-                        std::cout << "Credits " << credits << std::endl;
+                        Münzen(); 
 
                         // Warte auf die Eingabe 'e'
                         bool waitForE = false;
@@ -112,6 +111,50 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
         }
     }
 }
+
+
+
+#include <fstream> // Für std::ifstream und std::ofstream
+
+#include <fstream> // Für std::ifstream und std::ofstream
+
+#include <iostream>
+#include <fstream>
+
+void Gericht::Münzen() {
+    // Öffnen der Datei zum Lesen und Schreiben
+    std::fstream file("Images/SpeicherungMünzen.csv", std::ios::in | std::ios::out);
+    if (!file.is_open()) {
+        std::cerr << "Fehler beim Öffnen der Datei: SpeicherungMünzen.csv" << std::endl;
+        return;
+    }
+
+    int coins;
+    // Lesen der aktuellen Münzen aus der Datei
+    if (!(file >> coins)) {
+        std::cerr << "Fehler beim Lesen der Münzen aus der Datei." << std::endl;
+        file.close();
+        return;
+    }
+
+    // Erhöhen der Münzen um eins
+    coins++;
+
+    // Zurücksetzen des Dateizeigers, um den Wert zu überschreiben
+    file.seekp(0);
+
+    // Schreiben der aktualisierten Münzen in die Datei
+    if (!(file << coins)) {
+        std::cerr << "Fehler beim Schreiben der Münzen in die Datei." << std::endl;
+    }
+
+    // Schließen der Datei
+    file.close();
+}
+
+
+
+
 
 
 
