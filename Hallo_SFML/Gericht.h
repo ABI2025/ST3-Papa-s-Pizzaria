@@ -4,6 +4,7 @@ class Gericht
 {
 public: 
 	void drawRedCircleOnClick(sf::RenderWindow& window, int& credits); 
-	void Münzen();
+	void Münzen(sf::RenderWindow& window);
+	void updateCounter( sf::RenderWindow& window);
 };
 

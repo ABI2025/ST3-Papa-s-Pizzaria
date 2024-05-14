@@ -4,7 +4,9 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-using namespace std; 
+#include <fstream>
+
+using namespace std;
 
 void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
     bool mouseClicked = false; // Flagge, um zu überprüfen, ob die Maus bereits geklickt wurde
@@ -47,14 +49,14 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     // Holen der Mausposition in Bezug auf das Fenster
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    
+
                     // Überprüfen, ob die Mausposition mit den Koordinaten eines Moduls übereinstimmt
                     bool validPlacement = false;
-                   
+
                     for (const auto& coord : trackedCoordinates) {
                         if (mousePos.x > coord.first - (rasterWidthX / 2) && mousePos.x < coord.first + (rasterWidthX / 2) &&
                             mousePos.y > coord.second - (rasterWidthY / 2) && mousePos.y < coord.second + (rasterWidthY / 2)) {
-                        
+
                             validPlacement = true;
                             break;
                         }
@@ -82,8 +84,8 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                         mouseClicked = true;
 
                         // Erhöhe den Counter für Credits
-                        Münzen(); 
-
+                        Münzen(window);
+                        updateCounter(window); 
                         // Warte auf die Eingabe 'e'
                         bool waitForE = false;
                         while (!waitForE) {
@@ -112,55 +114,68 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
     }
 }
 
-
-
-#include <fstream> // Für std::ifstream und std::ofstream
-
-#include <fstream> // Für std::ifstream und std::ofstream
-
-#include <iostream>
-#include <fstream>
-
-void Gericht::Münzen() {
-    // Öffnen der Datei zum Lesen und Schreiben
+void Gericht::Münzen(sf::RenderWindow& window) {
+    // Öffnen der Datei im Lese- und Schreibmodus
     std::fstream file("Images/SpeicherungMünzen.csv", std::ios::in | std::ios::out);
+
     if (!file.is_open()) {
-        std::cerr << "Fehler beim Öffnen der Datei: SpeicherungMünzen.csv" << std::endl;
+        std::cerr << "Datei konnte nicht geöffnet werden!" << std::endl;
         return;
     }
 
-    int coins;
-    // Lesen der aktuellen Münzen aus der Datei
-    if (!(file >> coins)) {
-        std::cerr << "Fehler beim Lesen der Münzen aus der Datei." << std::endl;
-        file.close();
-        return;
-    }
+    // Lesen des aktuellen Wertes
+    int wert;
+    file >> wert;
 
-    // Erhöhen der Münzen um eins
-    coins++;
+    // Inkrementieren des Werts um eins
+    wert++;
 
-    // Zurücksetzen des Dateizeigers, um den Wert zu überschreiben
-    file.seekp(0);
+    // Zurücksetzen des Lesepointers
+    file.clear();
+    file.seekp(0, std::ios::beg);
 
-    // Schreiben der aktualisierten Münzen in die Datei
-    if (!(file << coins)) {
-        std::cerr << "Fehler beim Schreiben der Münzen in die Datei." << std::endl;
-    }
+    // Speichern des neuen Werts
+    file << wert;
 
     // Schließen der Datei
     file.close();
+
+    
 }
 
+void Gericht::updateCounter(sf::RenderWindow& window) {
+    // Öffnen der Datei im Lese-Modus
+    std::ifstream file("Images/SpeicherungMünzen.csv");
 
+    if (!file.is_open()) {
+        std::cerr << "Datei konnte nicht geöffnet werden!" << std::endl;
+        return;
+    }
 
+    // Lesen des aktuellen Werts
+    int wert;
+    file >> wert;
 
+    // Schließen der Datei
+    file.close();
 
+    // Erstellen einer Schriftart
+    sf::Font font;
+    if (!font.loadFromFile("Font/Crimson-Bold.ttf")) {
+        std::cerr << "Schriftart konnte nicht geladen werden!" << std::endl;
+        return;
+    }
 
+    // Erstellen eines Textobjekts
+    sf::Text text;
+    text.setFont(font);
+    text.setCharacterSize(24);
+    text.setString("Coins: " + std::to_string(wert));
+    text.setPosition(20, 20);
+    text.setFillColor(sf::Color::White);
 
-
-
-
-
-
+    // Löschen des Fensters und Neuzeichnen des Texts
+    window.draw(text);
+    window.display();
+}
 
