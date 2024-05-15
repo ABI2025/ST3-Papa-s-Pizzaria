@@ -38,6 +38,8 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
     float rasterStartY = 157.0f;
     float rasterWidthX = 64.0f;
     float rasterWidthY = 63.0f;
+    float imageWidth = 32.0f; // Annahme: Die Breite des Bildes beträgt 32 Pixel
+    float imageHeight = 32.0f; // Annahme: Die Höhe des Bildes beträgt 32 Pixel
 
     while (window.isOpen() && !mouseClicked) {
         sf::Event event;
@@ -52,26 +54,26 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
 
                     // Überprüfen, ob die Mausposition mit den Koordinaten eines Moduls übereinstimmt
                     bool validPlacement = false;
-                    cout << "Koordinaten: " << mousePos.x << "  und " << mousePos.y << endl;
                     for (const auto& coord : trackedCoordinates) {
-                        cout << "Neu " << endl; 
-                        cout << coord.first - (rasterWidthX / 2) << endl; 
-                        cout << coord.first + (rasterWidthX / 2) << endl;
-                        cout << coord.second - (rasterWidthY / 2) << endl;
-                        cout << coord.second + (rasterWidthY / 2) << endl;
                         if (mousePos.x > coord.first - (rasterWidthX / 2) && mousePos.x < coord.first + (rasterWidthX / 2) &&
                             mousePos.y > coord.second - (rasterWidthY / 2) && mousePos.y < coord.second + (rasterWidthY / 2)) {
 
                             validPlacement = true;
+                            // Berechne die mittlere Position des Rasters
+                            float centerX = coord.first;
+                            float centerY = coord.second;
+
+                            // Berechne die Position des Bildes, damit es mittig im Raster liegt
+                            float imagePosX = centerX - (imageWidth / 2);
+                            float imagePosY = centerY - (imageHeight / 2);
+
+                            // Setze die Position des Sprites auf die berechnete Position
+                            image.setPosition(imagePosX-26, imagePosY-24);
                             break;
                         }
                     }
 
-
                     if (validPlacement) {
-                        // Setze die Position des Sprites auf die Mausposition
-                        image.setPosition(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-
                         // Zeichne das erste Bild auf das Fenster
                         window.draw(image);
                         window.display();
@@ -120,6 +122,7 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
         }
     }
 }
+
 
 
 
