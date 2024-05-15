@@ -55,7 +55,7 @@ void Karte::erstelleKarte() {
     int credits = 0; // Counter für Credits
 
     while (window.isOpen()) {
-
+        Gericht* gericht = new Gericht;
         window.clear();
         window.draw(sprite);
         Box* tisch = new Box;
@@ -63,6 +63,7 @@ void Karte::erstelleKarte() {
         button1.draw(window);
         button2.draw(window);
         button3.draw(window);
+        gericht->updateCounter(window);
         cheff01.zeichnen(window);
         window.display();
 
@@ -92,7 +93,6 @@ void Karte::erstelleKarte() {
                     }
                     else if (button3.isClicked(mousePos)) {
                         std::cout << "Button 3 clicked!" << std::endl;
-                        Gericht* gericht = new Gericht;
                         gericht->drawRedCircleOnClick(window, credits); // Übergebe den Counter für Credits
                     }
                 }

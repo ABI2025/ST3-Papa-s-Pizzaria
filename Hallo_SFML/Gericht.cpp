@@ -9,20 +9,20 @@
 using namespace std;
 
 void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
-    bool mouseClicked = false; // Flagge, um zu überprüfen, ob die Maus bereits geklickt wurde
+    bool mouseClicked = false;
 
     // Koordinaten der bereits platzierten Module abrufen
     Box box;
     std::vector<std::pair<int, int>> trackedCoordinates = box.readCSVAndTrack(window);
 
-    // Lade das erste Bild
+    // Lade das erste Bild (PizzaSchinkenSalami)
     sf::Texture texture1;
     if (!texture1.loadFromFile("Images/PizzaSchinkenSalami.png")) {
         std::cerr << "Fehler beim Laden des ersten Bildes!" << std::endl;
         return;
     }
 
-    // Lade das zweite Bild
+    // Lade das zweite Bild (PizzaMagaritaFertig)
     sf::Texture texture2;
     if (!texture2.loadFromFile("Images/PizzaMagaritaFertig.png")) {
         std::cerr << "Fehler beim Laden des zweiten Bildes!" << std::endl;
@@ -33,11 +33,11 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
     sf::Sprite image;
     image.setTexture(texture1);
 
-    // Raster-Größe und -Startposition basierend auf der Anzahl der Module
+    // Raster-Größe und -Startposition
     float rasterStartX = 642.0f;
     float rasterStartY = 157.0f;
-    float rasterWidthX = 64.0f; // Breite des Rasters
-    float rasterWidthY = 63.75f; // Höhe des Rasters
+    float rasterWidthX = 64.0f;
+    float rasterWidthY = 63.0f;
 
     while (window.isOpen() && !mouseClicked) {
         sf::Event event;
@@ -48,12 +48,17 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     // Holen der Mausposition in Bezug auf das Fenster
-                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                    sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 
                     // Überprüfen, ob die Mausposition mit den Koordinaten eines Moduls übereinstimmt
                     bool validPlacement = false;
-
+                    cout << "Koordinaten: " << mousePos.x << "  und " << mousePos.y << endl;
                     for (const auto& coord : trackedCoordinates) {
+                        cout << "Neu " << endl; 
+                        cout << coord.first - (rasterWidthX / 2) << endl; 
+                        cout << coord.first + (rasterWidthX / 2) << endl;
+                        cout << coord.second - (rasterWidthY / 2) << endl;
+                        cout << coord.second + (rasterWidthY / 2) << endl;
                         if (mousePos.x > coord.first - (rasterWidthX / 2) && mousePos.x < coord.first + (rasterWidthX / 2) &&
                             mousePos.y > coord.second - (rasterWidthY / 2) && mousePos.y < coord.second + (rasterWidthY / 2)) {
 
@@ -61,6 +66,7 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                             break;
                         }
                     }
+
 
                     if (validPlacement) {
                         // Setze die Position des Sprites auf die Mausposition
@@ -73,6 +79,10 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                         // Warte 5 Sekunden
                         std::this_thread::sleep_for(std::chrono::seconds(1));
 
+                        // Erhöhe den Counter für Credits
+                        Münzen(window);
+                        //updateCounter(window);
+
                         // Ändere die Textur des Sprites auf die des zweiten Bildes
                         image.setTexture(texture2);
 
@@ -83,9 +93,6 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                         // Setze die Flagge, dass die Maus geklickt wurde
                         mouseClicked = true;
 
-                        // Erhöhe den Counter für Credits
-                        Münzen(window);
-                        updateCounter(window); 
                         // Warte auf die Eingabe 'e'
                         bool waitForE = false;
                         while (!waitForE) {
@@ -93,26 +100,31 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                             while (window.pollEvent(e)) {
                                 if (e.type == sf::Event::Closed) {
                                     window.close();
-                                    return; // Beende die Funktion, wenn das Fenster geschlossen wird
+                                    return;
                                 }
                                 if (e.type == sf::Event::TextEntered) {
                                     if (e.text.unicode == 'e') {
                                         std::cout << "E" << std::endl;
-                                        waitForE = true; // Setze die Flagge, um die Schleife zu verlassen
-                                        break; // Verlasse die innere Schleife, wenn 'e' eingegeben wird
+                                        waitForE = true;
+                                        break;
                                     }
                                 }
                             }
                         }
                     }
                     else {
-                        std::cout << "Ein Bild kann nur auf einem Modul platziert werden!" << std::endl;
+                        std::cout << "Ein Bild kann nur auf einem belegten Modul platziert werden!" << std::endl;
                     }
                 }
             }
         }
     }
 }
+
+
+
+
+
 
 void Gericht::Münzen(sf::RenderWindow& window) {
     // Öffnen der Datei im Lese- und Schreibmodus
@@ -171,11 +183,10 @@ void Gericht::updateCounter(sf::RenderWindow& window) {
     text.setFont(font);
     text.setCharacterSize(24);
     text.setString("Coins: " + std::to_string(wert));
-    text.setPosition(20, 20);
+    text.setPosition(1800, 20);
     text.setFillColor(sf::Color::White);
 
     // Löschen des Fensters und Neuzeichnen des Texts
     window.draw(text);
-    window.display();
 }
 

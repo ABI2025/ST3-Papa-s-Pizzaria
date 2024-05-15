@@ -89,7 +89,7 @@ void Box::erstelleBoxMitPosition(sf::RenderWindow& window, float positionX, floa
         sprite.setOrigin((spriteSize.x / 2), (spriteSize.y / 2));
         sprite.setPosition(positionX-15, positionY+10);
 
-        
+        //cout << "Box plaziert: " << positionX  << " " << positionY << endl;
 
         window.draw(sprite);
         

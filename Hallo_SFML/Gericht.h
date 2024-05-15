@@ -6,5 +6,13 @@ public:
 	void drawRedCircleOnClick(sf::RenderWindow& window, int& credits); 
 	void Münzen(sf::RenderWindow& window);
 	void updateCounter( sf::RenderWindow& window);
+
+private:
+    // Deklariere die Variablen hier
+    bool mouseClicked;
+    std::vector<std::pair<int, int>> trackedCoordinates;
+    sf::Texture texture1;
+    sf::Texture texture2;
+    sf::Sprite image;
 };
 
