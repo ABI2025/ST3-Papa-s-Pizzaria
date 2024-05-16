@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Aufträge.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Gericht.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="menueFunktionen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Aufträge.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Gericht.h" />

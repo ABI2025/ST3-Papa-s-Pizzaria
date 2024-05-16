@@ -124,11 +124,6 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
 }
 
 
-
-
-
-
-
 void Gericht::Münzen(sf::RenderWindow& window) {
     // Öffnen der Datei im Lese- und Schreibmodus
     std::fstream file("Images/SpeicherungMünzen.csv", std::ios::in | std::ios::out);

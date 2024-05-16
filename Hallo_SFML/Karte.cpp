@@ -1,6 +1,7 @@
 #include "Karte.h"
 #include "Box.h"
 #include "Button.h"
+#include "Aufträge.h"
 #include "Gericht.h"
 #include "littleCheff.h"
 #include <SFML/Graphics.hpp>
@@ -53,9 +54,11 @@ void Karte::erstelleKarte() {
     bool isPaused = false; // Flag to indicate if the game is paused
 
     int credits = 0; // Counter für Credits
-
+    Aufträge* auftrag = new Aufträge; 
+    
     while (window.isOpen()) {
         Gericht* gericht = new Gericht;
+        
         window.clear();
         window.draw(sprite);
         Box* tisch = new Box;
@@ -65,7 +68,9 @@ void Karte::erstelleKarte() {
         button3.draw(window);
         gericht->updateCounter(window);
         cheff01.zeichnen(window);
+        auftrag->neueAufträge(window); 
         window.display();
+
 
         sf::Event event;
         while (window.pollEvent(event)) {
