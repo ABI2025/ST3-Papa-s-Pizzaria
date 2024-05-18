@@ -32,7 +32,43 @@ void Karte::erstelleKarte() {
     //lade littleCheff
     float x = 960;
     float y = 452;
-    littleCheff cheff01(x, y, 64, 90);
+    sf::Texture cheffTexture;
+    if (!cheffTexture.loadFromFile("Images/littleCheffFront.png")) {
+        std::cout << "Fehler" << std::endl;
+        return;
+    }
+    cheffTexture.setSmooth(true); // Setze die Textur auf glatte Darstellung
+    sf::Sprite cheffSprite(cheffTexture);
+    cheffSprite.setScale(90.f / cheffSprite.getTexture()->getSize().x, 90.f / cheffSprite.getTexture()->getSize().y); // Ändere die Größe des Sprites
+    cheffSprite.setPosition(x, y);
+
+    sf::Texture cheffTextureLeft;
+    if (!cheffTextureLeft.loadFromFile("Images/littleCheffLeft.png")) {
+        std::cout << "Fehler" << std::endl;
+        return;
+    }
+    cheffTextureLeft.setSmooth(true);
+
+    sf::Texture cheffTextureRight;
+    if (!cheffTextureRight.loadFromFile("Images/littleCheffRight.png")) {
+        std::cout << "Fehler" << std::endl;
+        return;
+    }
+    cheffTextureRight.setSmooth(true);
+
+    sf::Texture cheffTextureUp;
+    if (!cheffTextureUp.loadFromFile("Images/littleCheffBack.png")) {
+        std::cout << "Fehler" << std::endl;
+        return;
+    }
+    cheffTextureUp.setSmooth(true);
+
+    sf::Texture cheffTextureDown;
+    if (!cheffTextureDown.loadFromFile("Images/littleCheffFront.png")) {
+        std::cout << "Fehler" << std::endl;
+        return;
+    }
+    cheffTextureDown.setSmooth(true);
 
     //litteCheff WorldBorder
     sf::Vector2f boundaryTopLeft(642.0, 85.0); // Top-left corner
@@ -67,7 +103,7 @@ void Karte::erstelleKarte() {
         button2.draw(window);
         button3.draw(window);
         gericht->updateCounter(window);
-        cheff01.zeichnen(window);
+        window.draw(cheffSprite);
         auftrag->neueAufträge(window); 
         window.display();
 
@@ -108,48 +144,37 @@ void Karte::erstelleKarte() {
         if (y < boundaryTopLeft.y) {
             y = boundaryTopLeft.y; // Stay at the top boundary
         }
-        else if (y > boundaryBottomRight.y - cheff01.getHoehe()) {
-            y = boundaryBottomRight.y - cheff01.getHoehe(); // Stay at the bottom boundary
+        else if (y > boundaryBottomRight.y - cheffSprite.getGlobalBounds().height) {
+            y = boundaryBottomRight.y - cheffSprite.getGlobalBounds().height; // Stay at the bottom boundary
         }
 
         if (x < boundaryTopLeft.x) {
             x = boundaryTopLeft.x; // Stay at the left boundary
         }
-        else if (x > boundaryBottomRight.x - cheff01.getBreite()) {
-            x = boundaryBottomRight.x - cheff01.getBreite(); // Stay at the right boundary
+        else if (x > boundaryBottomRight.x - cheffSprite.getGlobalBounds().width) {
+            x = boundaryBottomRight.x - cheffSprite.getGlobalBounds().width; // Stay at the right boundary
         }
 
         // Update the position of the littleCheff
-        cheff01.setX(x);
-        cheff01.setY(y);
+        cheffSprite.setPosition(x, y);
 
-        // Check if the game is paused
-        if (isPaused) {
-
-            // Wait for a key press to resume
-            sf::Event resumeEvent;
-            while (window.pollEvent(resumeEvent)) {
-                if (resumeEvent.type == sf::Event::KeyPressed) {
-                    if (resumeEvent.key.code == sf::Keyboard::Escape) {
-                        isPaused = false; // Resume the game if Esc is pressed
-                        break; // Exit the resumeEvent loop
-                    }
-                }
-            }
-        }
-        else {
-            // Handle movement when the game is not paused
+        // Handle movement when the game is not paused
+        if (!isPaused) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                y -= 5.0; // Move up
+                y -= 10.0; // Move up
+                cheffSprite.setTexture(cheffTextureUp);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                y += 5.0; // Move down
+                y += 10.0; // Move down
+                cheffSprite.setTexture(cheffTextureDown);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                x -= 5.0; // Move left
+                x -= 10.0; // Move left
+                cheffSprite.setTexture(cheffTextureLeft);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                x += 5.0; // Move right
+                x += 10.0; // Move right
+                cheffSprite.setTexture(cheffTextureRight);
             }
         }
 
