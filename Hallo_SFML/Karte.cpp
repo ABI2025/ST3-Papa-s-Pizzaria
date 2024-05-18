@@ -1,3 +1,5 @@
+
+
 #include "Karte.h"
 #include "Box.h"
 #include "Button.h"
@@ -20,7 +22,7 @@ void Karte::erstelleKarte() {
         std::cout << "Fehler" << std::endl;
         return;
     }
-
+    
     sf::Sprite sprite(texture);
     float skalierungsfaktor = 1.0f;
     sprite.setScale(skalierungsfaktor, skalierungsfaktor);
@@ -92,7 +94,31 @@ void Karte::erstelleKarte() {
     int credits = 0; // Counter für Credits
     Aufträge* auftrag = new Aufträge; 
     
+    sf::RectangleShape pauseOverlay(sf::Vector2f(windowSize.x, windowSize.y));
+    pauseOverlay.setFillColor(sf::Color::Black);
+
+    sf::Font font;
+    if (!font.loadFromFile("Font/Courier New Regular.ttf")) {
+        std::cout << "Fehler" << std::endl;
+        return;
+    }
+
     while (window.isOpen()) {
+        
+        // Setze die Größe von pauseOverlay auf 640 x 360
+        pauseOverlay.setSize(sf::Vector2f(640.f, 360.f));
+        sf::Vector2f pauseOverlayPosition((windowSize.x - pauseOverlay.getSize().x) / 2, (windowSize.y - pauseOverlay.getSize().y) / 2);
+        pauseOverlay.setPosition(pauseOverlayPosition);
+        sf::Text pauseText;
+        pauseText.setString("Wir haben Probleme in der Küche,\nbitte warten Sie");
+        pauseText.setFont(font);
+        pauseText.setCharacterSize(24);
+        pauseText.setFillColor(sf::Color::White);
+        sf::FloatRect textBounds = pauseText.getLocalBounds();
+        pauseText.setOrigin(textBounds.left + textBounds.width / 2.0f,
+            textBounds.top + textBounds.height / 2.0f);
+        pauseText.setPosition(pauseOverlay.getPosition() + sf::Vector2f(pauseOverlay.getSize().x / 2.0f, pauseOverlay.getSize().y / 2.0f));
+
         Gericht* gericht = new Gericht;
         
         window.clear();
@@ -105,6 +131,12 @@ void Karte::erstelleKarte() {
         gericht->updateCounter(window);
         window.draw(cheffSprite);
         auftrag->neueAufträge(window); 
+
+        if (isPaused) {
+            window.draw(pauseOverlay);
+            window.draw(pauseText);
+        }
+
         window.display();
 
 
@@ -121,7 +153,7 @@ void Karte::erstelleKarte() {
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button == sf::Mouse::Left) {
+                if (event.mouseButton.button == sf::Mouse::Left && !isPaused) {
                     sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
                     if (button1.isClicked(mousePos)) {
                         std::cout << "Button 1 clicked!" << std::endl;
