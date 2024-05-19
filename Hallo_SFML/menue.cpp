@@ -30,14 +30,14 @@ void menue::startMenue()
     Text text7("                                           \\|_________| \n", *font, 24);
 
     // Setze die Position des Texts (Vektor2f ist ein 2 Demensioaler Vektor er enthält einen Punkt auf der X- und Y-Achse)
-    Vector2f position0(100, 100);
-    Vector2f position1(100, 135);
-    Vector2f position2(100, 170);
-    Vector2f position3(100, 205);
-    Vector2f position4(100, 240);
-    Vector2f position5(100, 275);
-    Vector2f position6(100, 310);
-    Vector2f position7(100, 345);
+    Vector2f position0(0, 100);
+    Vector2f position1(0, 135);
+    Vector2f position2(0, 170);
+    Vector2f position3(0, 205);
+    Vector2f position4(0, 240);
+    Vector2f position5(0, 275);
+    Vector2f position6(0, 310);
+    Vector2f position7(0, 345);
 
     text0.setPosition(position0);
     text1.setPosition(position1);
