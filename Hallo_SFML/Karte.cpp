@@ -6,6 +6,7 @@
 #include "Aufträge.h"
 #include "Gericht.h"
 #include "littleCheff.h"
+#include "menue.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <chrono>
@@ -16,6 +17,7 @@ using namespace std;
 void Karte::erstelleKarte() {
     sf::VideoMode videoMode = sf::VideoMode::getDesktopMode();
     sf::RenderWindow window(videoMode, "Papas-Pizzeria");
+    menue* home = new menue;
 
     sf::Texture texture;
     if (!texture.loadFromFile("Images/KarteUpdate.png")) {
@@ -103,6 +105,22 @@ void Karte::erstelleKarte() {
         return;
     }
 
+    
+    
+    // Erstelle den Pause-Knopf
+    Button pauseButton(sf::Vector2f(100, 50), sf::Vector2f(50, 25), sf::Color::Transparent);
+    sf::Vector2f pauseButtonPosition(windowSize.x  / 2, windowSize.y  / 2 + 100);
+    pauseButton.setPosition(pauseButtonPosition);
+
+    // Erstelle den Text für den Pause-Knopf
+    sf::Text pauseButtonText;
+    pauseButtonText.setFont(font);
+    pauseButtonText.setCharacterSize(16);
+    pauseButtonText.setFillColor(sf::Color::White);
+    pauseButtonText.setString("Menü"); // Setze den Text des Pause-Knopfs auf "Menü"
+    pauseButtonText.setPosition(windowSize.x / 2, windowSize.y / 2 + 100);
+
+
     while (window.isOpen()) {
         
         // Setze die Größe von pauseOverlay auf 640 x 360
@@ -135,10 +153,14 @@ void Karte::erstelleKarte() {
         if (isPaused) {
             window.draw(pauseOverlay);
             window.draw(pauseText);
+            pauseButton.draw(window);
+            window.draw(pauseButtonText);
         }
 
         window.display();
 
+       
+        
 
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -167,6 +189,16 @@ void Karte::erstelleKarte() {
                     else if (button3.isClicked(mousePos)) {
                         std::cout << "Button 3 clicked!" << std::endl;
                         gericht->drawRedCircleOnClick(window, credits); // Übergebe den Counter für Credits
+                    }
+                }
+                else if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+                    if(pauseButton.isClicked(mousePos))
+                    {
+                        std::cout << "pauseButton clicked!" << std::endl;
+                        window.close();
+                        home->startMenue();
                     }
                 }
             }

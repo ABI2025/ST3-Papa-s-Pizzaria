@@ -1,21 +1,32 @@
-﻿  Karte.cpp
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244: "Argument": Konvertierung von "T" in "T", möglicher Datenverlust
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:         with
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:         [
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:             T=unsigned int
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:         ]
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:         and
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:         [
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:             T=float
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,74): warning C4244:         ]
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244: "Argument": Konvertierung von "T" in "T", möglicher Datenverlust
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:         with
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:         [
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:             T=unsigned int
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:         ]
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:         and
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:         [
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:             T=float
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(97,60): warning C4244:         ]
-C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\Karte.cpp(252,15): warning C4101: "event2": Unreferenzierte lokale Variable
+﻿  menue.cpp
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(70,47): warning C4244: "Argument": Konvertierung von "T" in "float", möglicher Datenverlust
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(70,47): warning C4244:         with
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(70,47): warning C4244:         [
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(70,47): warning C4244:             T=unsigned int
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(70,47): warning C4244:         ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(76,47): warning C4244: "Argument": Konvertierung von "T" in "float", möglicher Datenverlust
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(76,47): warning C4244:         with
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(76,47): warning C4244:         [
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(76,47): warning C4244:             T=unsigned int
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(76,47): warning C4244:         ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,92): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,92): warning C4244:         with
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,92): warning C4244:         [
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,92): warning C4244:             T=float
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,92): warning C4244:         ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,71): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,71): warning C4244:         with
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,71): warning C4244:         [
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,71): warning C4244:             T=float
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(107,71): warning C4244:         ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,97): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,97): warning C4244:         with
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,97): warning C4244:         [
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,97): warning C4244:             T=float
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,97): warning C4244:         ]
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,76): warning C4244: "Argument": Konvertierung von "int" in "T", möglicher Datenverlust
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,76): warning C4244:         with
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,76): warning C4244:         [
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,76): warning C4244:             T=float
+C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\Hallo_SFML\menue.cpp(115,76): warning C4244:         ]
   Hallo_SFML.vcxproj -> C:\Users\fynnt\OneDrive\Dokumente\Schuljahre 11-13\Schuljahr 12\eGK-Inf\Papas-Pizzeria\x64\Debug\Hallo_SFML.exe

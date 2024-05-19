@@ -108,6 +108,7 @@ void menue::startMenue()
                     // Wenn der Mauszeiger über dem Text8 liegt, ändere die Farbe der Schrift
                     if (event.mouseButton.button == Mouse::Left) {
                         Karte* map = new Karte;
+						window.close();
                         map->erstelleKarte();
                     }
                 }
