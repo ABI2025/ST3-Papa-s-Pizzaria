@@ -188,7 +188,8 @@ void Karte::erstelleKarte() {
                     }
                     else if (button3.isClicked(mousePos)) {
                         std::cout << "Button 3 clicked!" << std::endl;
-                        gericht->drawRedCircleOnClick(window, credits); // Übergebe den Counter für Credits
+                        gericht->drawRedCircleOnClick(window, credits); 
+                        auftrag->aktualisiereAufträge();// Übergebe den Counter für Credits
                     }
                 }
                 else if (event.mouseButton.button == sf::Mouse::Left)

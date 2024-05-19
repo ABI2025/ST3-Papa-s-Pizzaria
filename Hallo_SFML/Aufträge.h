@@ -5,6 +5,6 @@ class Aufträge
 {
 public: 
     void neueAufträge(sf::RenderWindow& window);
-    
+    void aktualisiereAufträge(); 
 };
 

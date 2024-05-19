@@ -90,29 +90,33 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
 
                         // Zeichne das zweite Bild an derselben Position
                         window.draw(image);
+
+
                         window.display();
 
                         // Setze die Flagge, dass die Maus geklickt wurde
                         mouseClicked = true;
+                        // Warte 5 Sekunden
+                        std::this_thread::sleep_for(std::chrono::seconds(1));
 
-                        // Warte auf die Eingabe 'e'
-                        bool waitForE = false;
-                        while (!waitForE) {
-                            sf::Event e;
-                            while (window.pollEvent(e)) {
-                                if (e.type == sf::Event::Closed) {
-                                    window.close();
-                                    return;
-                                }
-                                if (e.type == sf::Event::TextEntered) {
-                                    if (e.text.unicode == 'e') {
-                                        std::cout << "E" << std::endl;
-                                        waitForE = true;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
+                        //// Warte auf die Eingabe 'e'
+                        //bool waitForE = false;
+                        //while (!waitForE) {
+                        //    sf::Event e;
+                        //    while (window.pollEvent(e)) {
+                        //        if (e.type == sf::Event::Closed) {
+                        //            window.close();
+                        //            return;
+                        //        }
+                        //        if (e.type == sf::Event::TextEntered) {
+                        //            if (e.text.unicode == 'e') {
+                        //                std::cout << "E" << std::endl;
+                        //                waitForE = true;
+                        //                break;
+                        //            }
+                        //        }
+                        //    }
+                        //}
                     }
                     else {
                         std::cout << "Ein Bild kann nur auf einem belegten Modul platziert werden!" << std::endl;
