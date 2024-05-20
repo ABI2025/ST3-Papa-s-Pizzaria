@@ -125,7 +125,8 @@ sf::Vector2f Box::wartenAufMouse(sf::RenderWindow& window) {
 
     return position;
 }
-// Geht noch nicht 100 % 
+
+
 void Box::writeToCSVFromCoordinates(int x, int y) {
     // Definiere die Abmessungen des Rasters und die Startposition
     const float rasterStartX = 642.0f;
@@ -196,8 +197,6 @@ void Box::writeToCSVFromCoordinates(int x, int y) {
 }
 
 
-
-// Geht 
 std::vector<std::pair<int, int>> Box::readCSVAndTrack(sf::RenderWindow& window) {
     // Raster-Größe und -Startposition
     float rasterStartX = 642.0f;

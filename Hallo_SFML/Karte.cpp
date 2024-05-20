@@ -24,7 +24,7 @@ void Karte::erstelleKarte() {
         std::cout << "Fehler" << std::endl;
         return;
     }
-    
+
     sf::Sprite sprite(texture);
     float skalierungsfaktor = 1.0f;
     sprite.setScale(skalierungsfaktor, skalierungsfaktor);
@@ -33,7 +33,7 @@ void Karte::erstelleKarte() {
     sf::Vector2f spritePosition((windowSize.x - spriteSize.x) / 2, (windowSize.y - spriteSize.y) / 2);
     sprite.setPosition(spritePosition);
 
-    //lade littleCheff
+    // Lade littleCheff
     float x = 960;
     float y = 452;
     sf::Texture cheffTexture;
@@ -41,9 +41,9 @@ void Karte::erstelleKarte() {
         std::cout << "Fehler" << std::endl;
         return;
     }
-    cheffTexture.setSmooth(true); // Setze die Textur auf glatte Darstellung
+    cheffTexture.setSmooth(true);
     sf::Sprite cheffSprite(cheffTexture);
-    cheffSprite.setScale(90.f / cheffSprite.getTexture()->getSize().x, 90.f / cheffSprite.getTexture()->getSize().y); // Ändere die Größe des Sprites
+    cheffSprite.setScale(90.f / cheffSprite.getTexture()->getSize().x, 90.f / cheffSprite.getTexture()->getSize().y);
     cheffSprite.setPosition(x, y);
 
     sf::Texture cheffTextureLeft;
@@ -74,28 +74,25 @@ void Karte::erstelleKarte() {
     }
     cheffTextureDown.setSmooth(true);
 
-    //litteCheff WorldBorder
+    // LitteCheff WorldBorder
     sf::Vector2f boundaryTopLeft(642.0, 85.0); // Top-left corner
     sf::Vector2f boundaryBottomRight(1412.0, 990.0); // Bottom-right corner
 
-    // Erstelle den ersten Button
-    Button button1(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Blue);
-    button1.setPosition(sf::Vector2f(100, 100));
+    // Erstelle den ersten Button mit Bild
+    Button button1(sf::Vector2f(100, 100), sf::Vector2f(300, 200), "Images/Module.png");
 
-    // Erstelle den zweiten Button
-    Button button2(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Red); // Ändere die Farbe oder Eigenschaften nach Bedarf
-    button2.setPosition(sf::Vector2f(100, 300)); // Ändere die Position des zweiten Buttons
+    // Erstelle den zweiten Button mit Bild
+    Button button2(sf::Vector2f(100, 300), sf::Vector2f(300, 200), "Images/Story.png");
 
-    // Erstelle den dritten Button
-    Button button3(sf::Vector2f(200, 100), sf::Vector2f(100, 50), sf::Color::Green); // Ändere die Farbe oder Eigenschaften nach Bedarf
-    button3.setPosition(sf::Vector2f(100, 500)); // Ändere die Position des dritten Buttons
+    // Erstelle den dritten Button mit Bild
+    Button button3(sf::Vector2f(100, 500), sf::Vector2f(300, 200), "Images/Pizza1.png");
 
-    bool isRunning = true; // Flag to control the game loop
-    bool isPaused = false; // Flag to indicate if the game is paused
+    bool isRunning = true;
+    bool isPaused = false;
 
-    int credits = 0; // Counter für Credits
-    Aufträge* auftrag = new Aufträge; 
-    
+    int credits = 0;
+    Aufträge* auftrag = new Aufträge;
+
     sf::RectangleShape pauseOverlay(sf::Vector2f(windowSize.x, windowSize.y));
     pauseOverlay.setFillColor(sf::Color::Black);
 
@@ -105,24 +102,18 @@ void Karte::erstelleKarte() {
         return;
     }
 
-    
-    
-    // Erstelle den Pause-Knopf
-    Button pauseButton(sf::Vector2f(100, 50), sf::Vector2f(50, 25), sf::Color::Transparent);
-    sf::Vector2f pauseButtonPosition(windowSize.x  / 2, windowSize.y  / 2 + 100);
-    pauseButton.setPosition(pauseButtonPosition);
+    // Erstelle den Pause-Knopf mit Bild
+    Button pauseButton(sf::Vector2f(windowSize.x / 2, windowSize.y / 2 + 100), sf::Vector2f(100, 50), "Images/pauseButton.png");
 
     // Erstelle den Text für den Pause-Knopf
     sf::Text pauseButtonText;
     pauseButtonText.setFont(font);
     pauseButtonText.setCharacterSize(16);
     pauseButtonText.setFillColor(sf::Color::White);
-    pauseButtonText.setString("Menü"); // Setze den Text des Pause-Knopfs auf "Menü"
+    pauseButtonText.setString("Menü");
     pauseButtonText.setPosition(windowSize.x / 2, windowSize.y / 2 + 100);
 
-
     while (window.isOpen()) {
-        
         // Setze die Größe von pauseOverlay auf 640 x 360
         pauseOverlay.setSize(sf::Vector2f(640.f, 360.f));
         sf::Vector2f pauseOverlayPosition((windowSize.x - pauseOverlay.getSize().x) / 2, (windowSize.y - pauseOverlay.getSize().y) / 2);
@@ -133,12 +124,11 @@ void Karte::erstelleKarte() {
         pauseText.setCharacterSize(24);
         pauseText.setFillColor(sf::Color::White);
         sf::FloatRect textBounds = pauseText.getLocalBounds();
-        pauseText.setOrigin(textBounds.left + textBounds.width / 2.0f,
-            textBounds.top + textBounds.height / 2.0f);
+        pauseText.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
         pauseText.setPosition(pauseOverlay.getPosition() + sf::Vector2f(pauseOverlay.getSize().x / 2.0f, pauseOverlay.getSize().y / 2.0f));
 
         Gericht* gericht = new Gericht;
-        
+
         window.clear();
         window.draw(sprite);
         Box* tisch = new Box;
@@ -148,7 +138,7 @@ void Karte::erstelleKarte() {
         button3.draw(window);
         gericht->updateCounter(window);
         window.draw(cheffSprite);
-        auftrag->neueAufträge(window); 
+        auftrag->neueAufträge(window);
 
         if (isPaused) {
             window.draw(pauseOverlay);
@@ -158,9 +148,6 @@ void Karte::erstelleKarte() {
         }
 
         window.display();
-
-       
-        
 
         sf::Event event;
         while (window.pollEvent(event)) {

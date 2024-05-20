@@ -5,15 +5,17 @@
 
 class Button {
 public:
-    Button(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color);
+    Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& imagePath);
 
     void draw(sf::RenderWindow& window) const;
     bool isClicked(const sf::Vector2f& mousePos) const;
-    void setPosition(const sf::Vector2f& position);
+    void setPosition(const sf::Vector2f& newPosition);
+
 private:
     sf::Vector2f position;
     sf::Vector2f size;
-    sf::Color color;
+    sf::Texture texture;
+    sf::Sprite sprite;
 };
 
 #endif // BUTTON_H
