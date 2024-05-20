@@ -1,5 +1,6 @@
 #include "Gericht.h"
 #include "Box.h"
+#include "Button.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <chrono>
@@ -8,7 +9,7 @@
 
 using namespace std;
 
-void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
+void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits, int auswahl) {
     bool mouseClicked = false;
 
     // Koordinaten der bereits platzierten Module abrufen
@@ -17,21 +18,45 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
 
     // Lade das erste Bild (PizzaSchinkenSalami)
     sf::Texture texture1;
-    if (!texture1.loadFromFile("Images/PizzaSchinkenSalami.png")) {
+    if (!texture1.loadFromFile("Images/PizzaEins.png")) {
         std::cerr << "Fehler beim Laden des ersten Bildes!" << std::endl;
         return;
     }
 
     // Lade das zweite Bild (PizzaMagaritaFertig)
     sf::Texture texture2;
-    if (!texture2.loadFromFile("Images/PizzaMagaritaFertig.png")) {
+    if (!texture2.loadFromFile("Images/PizzaFertig.png")) {
+        std::cerr << "Fehler beim Laden des zweiten Bildes!" << std::endl;
+        return;
+    }
+    sf::Texture texture3;
+    if (!texture3.loadFromFile("Images/PizzaZwei.png")) {
+        std::cerr << "Fehler beim Laden des zweiten Bildes!" << std::endl;
+        return;
+    }
+    sf::Texture texture4;
+    if (!texture4.loadFromFile("Images/PizzaDrei.png")) {
         std::cerr << "Fehler beim Laden des zweiten Bildes!" << std::endl;
         return;
     }
 
     // Erstelle den Sprite für das erste Bild
     sf::Sprite image;
-    image.setTexture(texture1);
+    if (auswahl == 1)
+    {
+        image.setTexture(texture1);
+    }
+    if (auswahl == 2)
+    {
+        image.setTexture(texture3);
+    }
+    if (auswahl == 3)
+    {
+        image.setTexture(texture4);
+        cout << "Hallo" << endl; 
+    }
+
+    
 
     // Raster-Größe und -Startposition
     float rasterStartX = 642.0f;
@@ -79,10 +104,9 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                         window.display();
 
                         // Warte 5 Sekunden
-                        std::this_thread::sleep_for(std::chrono::seconds(1));
+                        std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                        // Erhöhe den Counter für Credits
-                        Münzen(window);
+                     
                         //updateCounter(window);
 
                         // Ändere die Textur des Sprites auf die des zweiten Bildes
@@ -97,26 +121,8 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
                         // Setze die Flagge, dass die Maus geklickt wurde
                         mouseClicked = true;
                         // Warte 5 Sekunden
-                        std::this_thread::sleep_for(std::chrono::seconds(1));
+                        std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                        //// Warte auf die Eingabe 'e'
-                        //bool waitForE = false;
-                        //while (!waitForE) {
-                        //    sf::Event e;
-                        //    while (window.pollEvent(e)) {
-                        //        if (e.type == sf::Event::Closed) {
-                        //            window.close();
-                        //            return;
-                        //        }
-                        //        if (e.type == sf::Event::TextEntered) {
-                        //            if (e.text.unicode == 'e') {
-                        //                std::cout << "E" << std::endl;
-                        //                waitForE = true;
-                        //                break;
-                        //            }
-                        //        }
-                        //    }
-                        //}
                     }
                     else {
                         std::cout << "Ein Bild kann nur auf einem belegten Modul platziert werden!" << std::endl;
@@ -127,6 +133,71 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits) {
     }
 }
 
+
+void Gericht::plusMinusMünzen(sf::RenderWindow& window, int operation, int changeValue) {
+    Button* button = new Button; 
+    // Öffnen der Datei im Lese- und Schreibmodus
+    std::fstream file("Images/SpeicherungMünzen.csv", std::ios::in | std::ios::out);
+
+    if (!file.is_open()) {
+        std::cerr << "Datei konnte nicht geöffnet werden!" << std::endl;
+        return;
+    }
+
+    // Lesen des aktuellen Wertes
+    int wert;
+    file >> wert;
+
+    // Variablen für Textdarstellung
+    std::string textString;
+
+    // Überprüfen der Operation (1 für Inkrementieren, 0 für Dekrementieren)
+    if (operation == 1) {
+        wert += changeValue;
+        textString = "+" + std::to_string(changeValue);
+    }
+    else if (operation == 0) {
+        if (wert - changeValue < 0) {
+            std::cerr << "Fehler: Wert kann nicht negativ sein!" << std::endl;
+            file.close();
+            button->Box(window); 
+        }
+        wert -= changeValue;
+        textString = "-" + std::to_string(changeValue);
+    }
+    else {
+        std::cerr << "Ungültige Operation!" << std::endl;
+        file.close();
+        return;
+    }
+
+    // Zurücksetzen des Lesepointers
+    file.clear();
+    file.seekp(0, std::ios::beg);
+
+    // Speichern des neuen Werts
+    file << wert;
+
+    // Schließen der Datei
+    file.close();
+
+    // Setzen des Textes und seiner Position
+    sf::Font font;
+    if (!font.loadFromFile("Font/Crimson-Bold.ttf")) {
+        std::cerr << "Font konnte nicht geladen werden!" << std::endl;
+        return;
+    }
+    sf::Text text;
+    text.setFont(font);
+    text.setString(textString);
+    text.setCharacterSize(24); // Beispielhafte Schriftgröße
+    text.setFillColor(sf::Color::White); // Beispielhafte Textfarbe
+    text.setPosition(1900, 20);
+
+    // Text auf dem Fenster rendern
+    window.draw(text);
+    window.display();
+}
 
 void Gericht::Münzen(sf::RenderWindow& window) {
     // Öffnen der Datei im Lese- und Schreibmodus
@@ -142,7 +213,7 @@ void Gericht::Münzen(sf::RenderWindow& window) {
     file >> wert;
 
     // Inkrementieren des Werts um eins
-    wert++;
+    wert = 5;
 
     // Zurücksetzen des Lesepointers
     file.clear();
@@ -154,7 +225,7 @@ void Gericht::Münzen(sf::RenderWindow& window) {
     // Schließen der Datei
     file.close();
 
-    
+
 }
 
 void Gericht::updateCounter(sf::RenderWindow& window) {

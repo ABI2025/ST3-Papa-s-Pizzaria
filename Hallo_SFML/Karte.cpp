@@ -79,13 +79,19 @@ void Karte::erstelleKarte() {
     sf::Vector2f boundaryBottomRight(1412.0, 990.0); // Bottom-right corner
 
     // Erstelle den ersten Button mit Bild
-    Button button1(sf::Vector2f(100, 100), sf::Vector2f(300, 200), "Images/Module.png");
+    Button button1(sf::Vector2f(100, 50), sf::Vector2f(300, 200), "Images/Module.png");
 
     // Erstelle den zweiten Button mit Bild
-    Button button2(sf::Vector2f(100, 300), sf::Vector2f(300, 200), "Images/Story.png");
+    Button button2(sf::Vector2f(1600, 900), sf::Vector2f(300, 200), "Images/Story.png");
 
     // Erstelle den dritten Button mit Bild
-    Button button3(sf::Vector2f(100, 500), sf::Vector2f(300, 200), "Images/Pizza1.png");
+    Button button3(sf::Vector2f(100, 250), sf::Vector2f(300, 200), "Images/Pizza1.png");
+
+    // Erstelle den vierten Button mit Bild
+    Button button4(sf::Vector2f(100, 450), sf::Vector2f(300, 200), "Images/Pizza2.png");
+
+    // Erstelle den fünften Button mit Bild
+    Button button5(sf::Vector2f(100, 650), sf::Vector2f(300, 200), "Images/Pizza3.png");
 
     bool isRunning = true;
     bool isPaused = false;
@@ -136,6 +142,8 @@ void Karte::erstelleKarte() {
         button1.draw(window);
         button2.draw(window);
         button3.draw(window);
+        button4.draw(window);
+        button5.draw(window); 
         gericht->updateCounter(window);
         window.draw(cheffSprite);
         auftrag->neueAufträge(window);
@@ -148,7 +156,7 @@ void Karte::erstelleKarte() {
         }
 
         window.display();
-
+        int auswahl; 
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -167,6 +175,8 @@ void Karte::erstelleKarte() {
                     if (button1.isClicked(mousePos)) {
                         std::cout << "Button 1 clicked!" << std::endl;
                         Box* arbFläche = new Box;
+                        gericht->plusMinusMünzen(window, 0, 5);
+                        auftrag->aktualisiereAufträge();
                         arbFläche->erstelleBox(window);
                     }
                     else if (button2.isClicked(mousePos)) {
@@ -175,7 +185,29 @@ void Karte::erstelleKarte() {
                     }
                     else if (button3.isClicked(mousePos)) {
                         std::cout << "Button 3 clicked!" << std::endl;
-                        gericht->drawRedCircleOnClick(window, credits); 
+                        auswahl = 1;
+                        gericht->plusMinusMünzen(window,0, 3);
+                        auftrag->aktualisiereAufträge();
+                        gericht->drawRedCircleOnClick(window, credits, auswahl); 
+                        gericht->plusMinusMünzen(window, 1, 5);
+                        auftrag->aktualisiereAufträge();// Übergebe den Counter für Credits
+                    }
+                    else if (button4.isClicked(mousePos)) {
+                        std::cout << "Button 4 clicked!" << std::endl;
+                        auswahl = 2;
+                        gericht->plusMinusMünzen(window, 0, 4);
+                        auftrag->aktualisiereAufträge();
+                        gericht->drawRedCircleOnClick(window, credits, auswahl);
+                        gericht->plusMinusMünzen(window, 1, 6);
+                        auftrag->aktualisiereAufträge();// Übergebe den Counter für Credits
+                    }
+                    else if (button5.isClicked(mousePos)) {
+                        std::cout << "Button 5 clicked!" << std::endl;
+                        auswahl = 3;
+                        gericht->plusMinusMünzen(window, 0, 5);
+                        auftrag->aktualisiereAufträge();
+                        gericht->drawRedCircleOnClick(window, credits, auswahl);
+                        gericht->plusMinusMünzen(window, 1, 8);
                         auftrag->aktualisiereAufträge();// Übergebe den Counter für Credits
                     }
                 }
@@ -232,6 +264,7 @@ void Karte::erstelleKarte() {
 
     }
 }
+
 
 void Karte::Story(sf::RenderWindow& window) {
     // Berechne die Größe des Fensters

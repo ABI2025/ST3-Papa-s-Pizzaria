@@ -51,7 +51,7 @@ void Box::erstelleBox(sf::RenderWindow& window) {
             readCSVAndTrack(window); 
         }
         
-        
+       
 
         bool waitForE = false;
         while (!waitForE) {
