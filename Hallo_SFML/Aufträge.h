@@ -5,6 +5,8 @@ class Aufträge
 {
 public: 
     void neueAufträge(sf::RenderWindow& window);
-    void aktualisiereAufträge(); 
+    void aktualisiereAufträge(const std::string& id);
+
 };
+
 

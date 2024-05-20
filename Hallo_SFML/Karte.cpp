@@ -1,5 +1,4 @@
 
-
 #include "Karte.h"
 #include "Box.h"
 #include "Button.h"
@@ -176,7 +175,6 @@ void Karte::erstelleKarte() {
                         std::cout << "Button 1 clicked!" << std::endl;
                         Box* arbFläche = new Box;
                         gericht->plusMinusMünzen(window, 0, 5);
-                        auftrag->aktualisiereAufträge();
                         arbFläche->erstelleBox(window);
                     }
                     else if (button2.isClicked(mousePos)) {
@@ -187,28 +185,25 @@ void Karte::erstelleKarte() {
                         std::cout << "Button 3 clicked!" << std::endl;
                         auswahl = 1;
                         gericht->plusMinusMünzen(window,0, 3);
-                        auftrag->aktualisiereAufträge();
                         gericht->drawRedCircleOnClick(window, credits, auswahl); 
                         gericht->plusMinusMünzen(window, 1, 5);
-                        auftrag->aktualisiereAufträge();// Übergebe den Counter für Credits
+                        auftrag->aktualisiereAufträge("Pizza1");// Übergebe den Counter für Credits
                     }
                     else if (button4.isClicked(mousePos)) {
                         std::cout << "Button 4 clicked!" << std::endl;
                         auswahl = 2;
                         gericht->plusMinusMünzen(window, 0, 4);
-                        auftrag->aktualisiereAufträge();
                         gericht->drawRedCircleOnClick(window, credits, auswahl);
                         gericht->plusMinusMünzen(window, 1, 6);
-                        auftrag->aktualisiereAufträge();// Übergebe den Counter für Credits
+                        auftrag->aktualisiereAufträge("Pizza2");// Übergebe den Counter für Credits
                     }
                     else if (button5.isClicked(mousePos)) {
                         std::cout << "Button 5 clicked!" << std::endl;
                         auswahl = 3;
                         gericht->plusMinusMünzen(window, 0, 5);
-                        auftrag->aktualisiereAufträge();
                         gericht->drawRedCircleOnClick(window, credits, auswahl);
-                        gericht->plusMinusMünzen(window, 1, 8);
-                        auftrag->aktualisiereAufträge();// Übergebe den Counter für Credits
+                        gericht->plusMinusMünzen(window, 1, 2);
+                        auftrag->aktualisiereAufträge( "Pizza3");// Übergebe den Counter für Credits
                     }
                 }
                 else if (event.mouseButton.button == sf::Mouse::Left)

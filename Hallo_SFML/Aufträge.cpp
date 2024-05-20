@@ -1,13 +1,14 @@
 #include "Aufträge.h"
-#include <SFML/Graphics.hpp>
+#include "Gericht.h" // Enthält die Definitionen für 'Aufträge' und 'Gericht'
+#include <SFML/Graphics.hpp> // SFML-Bibliothek für Grafiken
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include <fstream>
+#include <fstream> // Dateiverarbeitung
 #include <string>
-#include <vector>
+#include <vector> // Verwendung von Vektoren
 #include <sstream> 
-using namespace std; 
+using namespace std;
 
 void Aufträge::neueAufträge(sf::RenderWindow& window) {
     // Definition der Struktur Auftrag
@@ -26,12 +27,13 @@ void Aufträge::neueAufträge(sf::RenderWindow& window) {
         return;
     }
 
-    std::vector<Auftrag> aufträge;
+    std::vector<Auftrag> aufträge; // Vektor zur Speicherung der Auftragsdaten
     std::string line;
 
-    // Überspringe die erste Zeile der Datei
+    // Überspringe die erste Zeile der Datei (Header)
     std::getline(file, line);
 
+    // Iteriere über jede Zeile der Datei und lese die Auftragsdaten ein
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         std::string token;
@@ -75,24 +77,25 @@ void Aufträge::neueAufträge(sf::RenderWindow& window) {
             continue; // Ignoriere fehlerhafte Zeile
         }
 
-        aufträge.push_back(auftrag);
+        aufträge.push_back(auftrag); // Füge den gelesenen Auftrag zum Vektor hinzu
     }
 
     // Schließe die Datei
     file.close();
 
-    // Erzeuge einen Text zur Anzeige der Aufträge
+    // Lade die Schriftart für die Anzeige der Auftragsdaten
     sf::Font font;
     if (!font.loadFromFile("Font/Crimson-Bold.ttf")) {
         std::cerr << "Schriftart konnte nicht geladen werden!" << std::endl;
         return;
     }
 
+    // Erzeuge einen Text zur Anzeige der Aufträge
     sf::Text text;
     text.setFont(font);
     text.setCharacterSize(20);
     text.setFillColor(sf::Color::White);
-    // Positioniere den Text etwas weiter mittig und weiter unten im Fenster
+    // Positioniere den Text im Fenster
     text.setPosition(1500, 60);
 
     // Erzeuge den Text für die Aufträge
@@ -107,7 +110,8 @@ void Aufträge::neueAufträge(sf::RenderWindow& window) {
     window.draw(text);
 }
 
-void Aufträge::aktualisiereAufträge() {
+
+void Aufträge::aktualisiereAufträge(const std::string& id) {
     // Definition der Struktur Auftrag
     struct Auftrag {
         int auftragsnummer;
@@ -184,9 +188,11 @@ void Aufträge::aktualisiereAufträge() {
     bool found = false;
     for (Auftrag& auftrag : aufträge) {
         if (auftrag.erledigt < auftrag.gesamt) {
-            auftrag.erledigt += 1;
-            found = true;
-            break; // Beende die Schleife, sobald der erste passende Auftrag gefunden und aktualisiert wurde
+            if (auftrag.pizza == id) {
+                auftrag.erledigt += 1;
+                found = true;
+            }
+            break; // Beende die Schleife, sobald der erste bearbeitbare Auftrag gefunden (und ggf. aktualisiert) wurde
         }
     }
 
@@ -217,9 +223,3 @@ void Aufträge::aktualisiereAufträge() {
         std::cerr << "Kein passender Auftrag zum Aktualisieren gefunden!" << std::endl;
     }
 }
-
-
-
-
-   
-

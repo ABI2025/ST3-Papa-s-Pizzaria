@@ -213,7 +213,7 @@ void Gericht::Münzen(sf::RenderWindow& window) {
     file >> wert;
 
     // Inkrementieren des Werts um eins
-    wert = 5;
+    wert = 5; // Hier setzen Sie den Wert immer auf 5, unabhängig vom vorherigen Wert
 
     // Zurücksetzen des Lesepointers
     file.clear();
@@ -224,8 +224,6 @@ void Gericht::Münzen(sf::RenderWindow& window) {
 
     // Schließen der Datei
     file.close();
-
-
 }
 
 void Gericht::updateCounter(sf::RenderWindow& window) {
