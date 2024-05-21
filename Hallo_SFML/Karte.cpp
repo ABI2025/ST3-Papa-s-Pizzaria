@@ -24,6 +24,14 @@ void Karte::erstelleKarte() {
         return;
     }
 
+    sf::Music music;
+    if (!music.openFromFile("SoundData/italian-tarantella-163385.mp3")) {
+        std::cout << "Fehler beim Laden der Musikdatei" << std::endl;
+        return;
+    }
+    music.setLoop(true);
+    music.play();
+
     sf::Sprite sprite(texture);
     float skalierungsfaktor = 1.0f;
     sprite.setScale(skalierungsfaktor, skalierungsfaktor);
@@ -133,6 +141,8 @@ void Karte::erstelleKarte() {
         pauseText.setPosition(pauseOverlay.getPosition() + sf::Vector2f(pauseOverlay.getSize().x / 2.0f, pauseOverlay.getSize().y / 2.0f));
 
         Gericht* gericht = new Gericht;
+
+        
 
         window.clear();
         window.draw(sprite);
