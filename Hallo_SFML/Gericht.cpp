@@ -135,7 +135,7 @@ void Gericht::drawRedCircleOnClick(sf::RenderWindow& window, int& credits, int a
 
 
 void Gericht::plusMinusMünzen(sf::RenderWindow& window, int operation, int changeValue) {
-    Button* button = new Button; 
+    Button* button = new Button;
     // Öffnen der Datei im Lese- und Schreibmodus
     std::fstream file("Images/SpeicherungMünzen.csv", std::ios::in | std::ios::out);
 
@@ -160,7 +160,8 @@ void Gericht::plusMinusMünzen(sf::RenderWindow& window, int operation, int chang
         if (wert - changeValue < 0) {
             std::cerr << "Fehler: Wert kann nicht negativ sein!" << std::endl;
             file.close();
-            button->Box(window); 
+            button->Box(window);
+            return;
         }
         wert -= changeValue;
         textString = "-" + std::to_string(changeValue);
@@ -175,7 +176,13 @@ void Gericht::plusMinusMünzen(sf::RenderWindow& window, int operation, int chang
     file.clear();
     file.seekp(0, std::ios::beg);
 
-    // Speichern des neuen Werts
+    // Leeren des Inhalts der Datei und dann den neuen Wert speichern
+    file.close(); // Datei schließen
+    file.open("Images/SpeicherungMünzen.csv", std::ios::out | std::ios::trunc); // Datei im Trunc-Modus öffnen
+    if (!file.is_open()) {
+        std::cerr << "Datei konnte nicht geöffnet werden!" << std::endl;
+        return;
+    }
     file << wert;
 
     // Schließen der Datei
@@ -198,6 +205,7 @@ void Gericht::plusMinusMünzen(sf::RenderWindow& window, int operation, int chang
     window.draw(text);
     window.display();
 }
+
 
 void Gericht::Münzen(sf::RenderWindow& window) {
     // Öffnen der Datei im Lese- und Schreibmodus
